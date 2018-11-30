@@ -1,0 +1,110 @@
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo2\EPaperDemo2\bin\Debug\EPaperDemo2.exe.config
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo2\EPaperDemo2\bin\Debug\EPaperDemo2.exe
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo2\EPaperDemo2\bin\Debug\EPaperDemo2.pdb
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo2\EPaperDemo2\bin\Debug\zxing.dll
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo2\EPaperDemo2\bin\Debug\zxing.presentation.dll
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo2\EPaperDemo2\obj\Debug\EPaperDemo2.csprojResolveAssemblyReference.cache
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo2\EPaperDemo2\obj\Debug\EPaperDemo2.Form1.resources
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo2\EPaperDemo2\obj\Debug\EPaperDemo2.Properties.Resources.resources
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo2\EPaperDemo2\obj\Debug\EPaperDemo2.csproj.GenerateResource.Cache
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo2\EPaperDemo2\obj\Debug\EPaperDemo2.exe
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo2\EPaperDemo2\obj\Debug\EPaperDemo2.pdb
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新\EPaperDemo2\bin\Debug\EPaperDemo2.exe.config
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新\EPaperDemo2\obj\Debug\EPaperDemo2.exe
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新\EPaperDemo2\obj\Debug\EPaperDemo2.pdb
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新\EPaperDemo2\bin\Debug\EPaperDemo2.exe
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新\EPaperDemo2\bin\Debug\EPaperDemo2.pdb
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新\EPaperDemo2\bin\Debug\zxing.dll
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新\EPaperDemo2\bin\Debug\zxing.presentation.dll
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新\EPaperDemo2\obj\Debug\EPaperDemo2.csprojResolveAssemblyReference.cache
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新\EPaperDemo2\obj\Debug\EPaperDemo2.Form1.resources
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新\EPaperDemo2\obj\Debug\EPaperDemo2.Properties.Resources.resources
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新\EPaperDemo2\obj\Debug\EPaperDemo2.csproj.GenerateResource.Cache
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新 - 複製\EPaperDemo2\bin\Debug\EPaperDemo2.exe.config
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新 - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.exe
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新 - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.pdb
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新 - 複製\EPaperDemo2\bin\Debug\EPaperDemo2.exe
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新 - 複製\EPaperDemo2\bin\Debug\EPaperDemo2.pdb
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新 - 複製\EPaperDemo2\bin\Debug\zxing.dll
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新 - 複製\EPaperDemo2\bin\Debug\zxing.presentation.dll
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新 - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.csprojResolveAssemblyReference.cache
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新 - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.Form1.resources
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新 - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.Properties.Resources.resources
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新 - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.csproj.GenerateResource.Cache
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\bin\Debug\EPaperDemo2.exe.config
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.exe
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.pdb
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\bin\Debug\EPaperDemo2.exe
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\bin\Debug\EPaperDemo2.pdb
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\bin\Debug\zxing.dll
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\bin\Debug\zxing.presentation.dll
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.csprojResolveAssemblyReference.cache
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.Form1.resources
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.Properties.Resources.resources
+C:\Users\NFC\Desktop\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.csproj.GenerateResource.Cache
+D:\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\bin\Debug\EPaperDemo2.exe.config
+D:\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.exe
+D:\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.pdb
+D:\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\bin\Debug\EPaperDemo2.exe
+D:\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\bin\Debug\EPaperDemo2.pdb
+D:\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\bin\Debug\zxing.dll
+D:\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\bin\Debug\zxing.presentation.dll
+D:\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.csprojResolveAssemblyReference.cache
+D:\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.Form1.resources
+D:\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.Properties.Resources.resources
+D:\EPaperParser\EPaperDemo瑞新3\EPaperDemo2\obj\Debug\EPaperDemo2.csproj.GenerateResource.Cache
+D:\EPaperParser\電子貨價標籤系統\NFC Reader\EPaperDemo_5225\EPaperDemo2\bin\Debug\EPaperDemo2.exe.config
+D:\EPaperParser\電子貨價標籤系統\NFC Reader\EPaperDemo_5225\EPaperDemo2\bin\Debug\EPaperDemo2.exe
+D:\EPaperParser\電子貨價標籤系統\NFC Reader\EPaperDemo_5225\EPaperDemo2\bin\Debug\EPaperDemo2.pdb
+D:\EPaperParser\電子貨價標籤系統\NFC Reader\EPaperDemo_5225\EPaperDemo2\bin\Debug\zxing.dll
+D:\EPaperParser\電子貨價標籤系統\NFC Reader\EPaperDemo_5225\EPaperDemo2\bin\Debug\zxing.presentation.dll
+D:\EPaperParser\電子貨價標籤系統\NFC Reader\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.Form1.resources
+D:\EPaperParser\電子貨價標籤系統\NFC Reader\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.Properties.Resources.resources
+D:\EPaperParser\電子貨價標籤系統\NFC Reader\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.csproj.GenerateResource.Cache
+D:\EPaperParser\電子貨價標籤系統\NFC Reader\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.exe
+D:\EPaperParser\電子貨價標籤系統\NFC Reader\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.pdb
+D:\EPaperParser\電子貨價標籤系統\NFC Reader\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.csprojResolveAssemblyReference.cache
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\EPaperDemo2.exe.config
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.pdb
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\EPaperDemo2.pdb
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\zxing.dll
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\zxing.presentation.dll
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.csprojResolveAssemblyReference.cache
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.Form1.resources
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.Properties.Resources.resources
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.csproj.GenerateResource.Cache
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\System.Net.Http.dll
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\System.Net.Http.xml
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\zxing.pdb
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\zxing.xml
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\zxing.presentation.pdb
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\zxing.presentation.xml
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\EPaperDemo2.exe.manifest
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\Debug\EPaperDemo2.application
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.TrustInfo.xml
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.exe.manifest
+C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\Debug\EPaperDemo2.application
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\EPaperDemo2.exe.config
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\EPaperDemo2.exe.manifest
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\EPaperDemo2.application
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\EPaperDemo2.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\System.Net.Http.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\zxing.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\zxing.presentation.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\System.Net.Http.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\zxing.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\zxing.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\zxing.presentation.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\bin\Debug\zxing.presentation.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.csprojResolveAssemblyReference.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.Form1.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.Properties.Resources.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.csproj.GenerateResource.Cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.TrustInfo.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.exe.manifest
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.application
