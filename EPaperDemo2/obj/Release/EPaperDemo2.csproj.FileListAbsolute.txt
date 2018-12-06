@@ -1,0 +1,17 @@
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Release\EPaperDemo2.exe.config
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Release\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Release\EPaperDemo2.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Release\System.Net.Http.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Release\zxing.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Release\zxing.presentation.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Release\System.Net.Http.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Release\zxing.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Release\zxing.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Release\zxing.presentation.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Release\zxing.presentation.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Release\EPaperDemo2.csprojResolveAssemblyReference.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Release\EPaperDemo2.Form1.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Release\EPaperDemo2.Properties.Resources.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Release\EPaperDemo2.csproj.GenerateResource.Cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Release\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Release\EPaperDemo2.pdb

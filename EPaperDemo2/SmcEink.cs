@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -195,8 +196,24 @@ namespace EPaperDemo2
                 else
                 {
 
+                    if (textbox.Name == "Label62Demo" || textbox.Name == "Label63Demo" || textbox.Name == "Label64Demo")
+                    {
+                        if (textbox.Text != "") {
+                            float floatDpi = float.Parse(textbox.Tag.ToString(), CultureInfo.InvariantCulture.NumberFormat);
+                            Label Slash = new Label();
+                            Slash.BorderStyle = BorderStyle.None;
+                            Slash.Font = new Font("Calibri", 9.2f * floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+                            Slash.Name = "Slash";
+                            Slash.ForeColor = Color.Black;
+                            //  Label19Demo.Size = new Size(58, 15);
+                            Slash.TabIndex = 229;
+                            Slash.Text += "/";
+                            Slash.AutoSize = true;
+                            graphic.DrawString(Slash.Text, font, new SolidBrush(Slash.ForeColor), xPanel + (float)(x)+ (textbox.Width/3.8F), yPanel + (float)y, stringFormat);
+                        }
 
-                    graphic.DrawString(textbox.Text, font, new SolidBrush(textbox.ForeColor), xPanel + (float)(x + textbox.Width), yPanel + (float)y, stringFormat);
+                    }
+                        graphic.DrawString(textbox.Text, font, new SolidBrush(textbox.ForeColor), xPanel + (float)(x + textbox.Width), yPanel + (float)y, stringFormat);
                 }
 
                 graphic.Flush();

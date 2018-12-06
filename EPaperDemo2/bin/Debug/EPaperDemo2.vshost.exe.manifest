@@ -1,17 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="EPaperDemo2.exe" version="1.0.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
-  <application />
-  <entryPoint>
-    <assemblyIdentity name="EPaperDemo2" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
-    <commandLine file="EPaperDemo2.exe" parameters="" />
-  </entryPoint>
-  <trustInfo>
+<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
+  <assemblyIdentity version="1.0.0.0" name="MyApplication.app" />
+  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
     <security>
-      <applicationRequestMinimum>
-        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
-        <defaultAssemblyRequest permissionSetReference="Custom" />
-      </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!-- UAC 資訊清單選項
              如果要變更 Windows 使用者帳戶控制層級，請將 
@@ -27,77 +18,12 @@
         -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
+      <applicationRequestMinimum>
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+        <PermissionSet class="System.Security.PermissionSet" version="1" ID="Custom" SameSite="site" Unrestricted="true" />
+      </applicationRequestMinimum>
     </security>
   </trustInfo>
-  <dependency>
-    <dependentOS>
-      <osVersionInfo>
-        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
-      </osVersionInfo>
-    </dependentOS>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EPaperDemo2.exe" size="39424">
-      <assemblyIdentity name="EPaperDemo2" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>hJMbAgwA0kk+9a3UNOCOqJlHq3Y=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Net.Http.dll" size="180832">
-      <assemblyIdentity name="System.Net.Http" version="2.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>vnPECG7jPdg4oYzUFMTu1U4KLqc=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="zxing.dll" size="454656">
-      <assemblyIdentity name="zxing" version="0.16.4.0" publicKeyToken="4E88037AC681FE60" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>mY6ZtnEmFlEAXuv9Mnfy4ugrlVA=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="zxing.presentation.dll" size="20480">
-      <assemblyIdentity name="zxing.presentation" version="0.16.4.0" publicKeyToken="4E88037AC681FE60" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>bGsjPrA2g+eyBhKHcUc4eQpsHjM=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <file name="EPaperDemo2.exe.config" size="312">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>7riiIAowzZKecXmj26FIgguA5Rg=</dsig:DigestValue>
-    </hash>
-  </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
     <application xmlns="urn:schemas-microsoft-com:asm.v3">
       <windowsSettings>
@@ -105,4 +31,30 @@
       </windowsSettings>
     </application>
   </compatibility>
-</asmv1:assembly>
+  <!-- 表示應用程式為 DPI 感知，Windows 不會在 DPI 變高時自動
+       調整。Windows Presentation Foundation (WPF) 應用程式會自動感知 DPI，因此不需要
+       選擇加入。選擇加入這項設定之以 .NET Framework 4.6 為目標的 Windows Form 應用程式也
+       應該在其 app.config 中將 'EnableWindowsFormsHighDpiAutoResizing' 設定為 'true'。-->
+  <!--
+  <application xmlns="urn:schemas-microsoft-com:asm.v3">
+    <windowsSettings>
+      <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true</dpiAware>
+    </windowsSettings>
+  </application>
+  -->
+  <!-- 啟用 Windows 通用控制項和對話方塊的佈景主題 (Windows XP 以後版本) -->
+  <!--
+  <dependency>
+    <dependentAssembly>
+      <assemblyIdentity
+          type="win32"
+          name="Microsoft.Windows.Common-Controls"
+          version="6.0.0.0"
+          processorArchitecture="*"
+          publicKeyToken="6595b64144ccf1df"
+          language="*"
+        />
+    </dependentAssembly>
+  </dependency>
+  -->
+</assembly>

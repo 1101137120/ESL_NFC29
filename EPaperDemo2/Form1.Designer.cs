@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.UpCOM = new System.Windows.Forms.Button();
             this.Connect_COM_Button = new System.Windows.Forms.Button();
             this.ConnectStatus = new System.Windows.Forms.Label();
             this.cbbComPort = new System.Windows.Forms.ComboBox();
@@ -46,16 +45,6 @@
             this.txtImport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_29)).BeginInit();
             this.SuspendLayout();
-            // 
-            // UpCOM
-            // 
-            this.UpCOM.Location = new System.Drawing.Point(395, 12);
-            this.UpCOM.Name = "UpCOM";
-            this.UpCOM.Size = new System.Drawing.Size(75, 23);
-            this.UpCOM.TabIndex = 95;
-            this.UpCOM.Text = "更新";
-            this.UpCOM.UseVisualStyleBackColor = true;
-            this.UpCOM.Click += new System.EventHandler(this.UpCOM_Click);
             // 
             // Connect_COM_Button
             // 
@@ -90,7 +79,7 @@
             this.ReadUID.Name = "ReadUID";
             this.ReadUID.Size = new System.Drawing.Size(120, 23);
             this.ReadUID.TabIndex = 96;
-            this.ReadUID.Text = "讀取UID";
+            this.ReadUID.Text = "讀取Tag";
             this.ReadUID.UseVisualStyleBackColor = true;
             this.ReadUID.Click += new System.EventHandler(this.ReadUID_Click);
             // 
@@ -111,12 +100,12 @@
             this.texMessageBox.Location = new System.Drawing.Point(9, 315);
             this.texMessageBox.Multiline = true;
             this.texMessageBox.Name = "texMessageBox";
-            this.texMessageBox.Size = new System.Drawing.Size(637, 142);
+            this.texMessageBox.Size = new System.Drawing.Size(533, 142);
             this.texMessageBox.TabIndex = 102;
             // 
             // HINKWriteButton
             // 
-            this.HINKWriteButton.Location = new System.Drawing.Point(375, 286);
+            this.HINKWriteButton.Location = new System.Drawing.Point(37, 286);
             this.HINKWriteButton.Name = "HINKWriteButton";
             this.HINKWriteButton.Size = new System.Drawing.Size(75, 23);
             this.HINKWriteButton.TabIndex = 107;
@@ -126,7 +115,7 @@
             // 
             // HINKViewerButton
             // 
-            this.HINKViewerButton.Location = new System.Drawing.Point(53, 286);
+            this.HINKViewerButton.Location = new System.Drawing.Point(300, 286);
             this.HINKViewerButton.Name = "HINKViewerButton";
             this.HINKViewerButton.Size = new System.Drawing.Size(75, 23);
             this.HINKViewerButton.TabIndex = 106;
@@ -137,14 +126,15 @@
             // panel29
             // 
             this.panel29.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel29.Location = new System.Drawing.Point(22, 152);
+            this.panel29.Location = new System.Drawing.Point(528, 96);
             this.panel29.Name = "panel29";
             this.panel29.Size = new System.Drawing.Size(296, 128);
             this.panel29.TabIndex = 108;
+            this.panel29.Visible = false;
             // 
             // pictureBox_29
             // 
-            this.pictureBox_29.Location = new System.Drawing.Point(350, 152);
+            this.pictureBox_29.Location = new System.Drawing.Point(107, 107);
             this.pictureBox_29.Name = "pictureBox_29";
             this.pictureBox_29.Size = new System.Drawing.Size(296, 128);
             this.pictureBox_29.TabIndex = 109;
@@ -152,7 +142,7 @@
             // 
             // continue29
             // 
-            this.continue29.Location = new System.Drawing.Point(476, 286);
+            this.continue29.Location = new System.Drawing.Point(129, 286);
             this.continue29.Name = "continue29";
             this.continue29.Size = new System.Drawing.Size(83, 23);
             this.continue29.TabIndex = 110;
@@ -184,7 +174,7 @@
             // 
             // txtImport
             // 
-            this.txtImport.Location = new System.Drawing.Point(476, 12);
+            this.txtImport.Location = new System.Drawing.Point(393, 12);
             this.txtImport.Name = "txtImport";
             this.txtImport.Size = new System.Drawing.Size(75, 23);
             this.txtImport.TabIndex = 113;
@@ -195,19 +185,18 @@
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(659, 462);
+            this.ClientSize = new System.Drawing.Size(546, 462);
+            this.Controls.Add(this.pictureBox_29);
             this.Controls.Add(this.txtImport);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.continue29);
-            this.Controls.Add(this.pictureBox_29);
             this.Controls.Add(this.panel29);
             this.Controls.Add(this.HINKWriteButton);
             this.Controls.Add(this.HINKViewerButton);
             this.Controls.Add(this.texMessageBox);
             this.Controls.Add(this.cbCOMPort);
             this.Controls.Add(this.ReadUID);
-            this.Controls.Add(this.UpCOM);
             this.Controls.Add(this.Connect_COM_Button);
             this.Controls.Add(this.ConnectStatus);
             this.Controls.Add(this.cbbComPort);
@@ -222,7 +211,6 @@
 
         #endregion
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.Button UpCOM;
         private System.Windows.Forms.Button Connect_COM_Button;
         private System.Windows.Forms.Label ConnectStatus;
         private System.Windows.Forms.ComboBox cbbComPort;

@@ -31,39 +31,43 @@ namespace EPaperDemo2
         Boolean isConnect;
         Boolean Write_Check;
         Boolean Red = false;
+        
         string t, r;
         static System.Windows.Forms.Timer WriteTimer = new System.Windows.Forms.Timer();
         static System.Windows.Forms.Timer UpdateTimer = new System.Windows.Forms.Timer();
         static System.Windows.Forms.Timer UIDReaderTimer = new System.Windows.Forms.Timer();
 
 
-        private string tag1_1 = "EBUF7E8.1";
-        private string tag1_2 = "EBUF7E8.1";
-        private string tag1_3 = "C1TMJV85156A-M004";
-        private string tag2_1 = "Info:";
-        private string tag2_2 = "3";
-        private string tag3_1 = "PSM";
-        private string tag3_2 = "SECURITY";
-        private string tag3_3 = "SSSHR";
-        private string tag4_1 = "0.028,L,";
-        private string tag4_2 = "193,";
-        private string tag4_3 = "AJBX3-1,";
-        private string tag4_4 = "BK#331";
-        private string tag4_5 = "Tone=";
-        private string tag4_6 = "C,";
-        private string tag4_7 = "CCD=";
-        private string tag4_8 = "0.72, ";
-        private string tag4_9 = "PD=";
-        private string tag4_10 = "23.08%";
-        private string tag4_11 = "Pel=";
-        private string tag4_12 = "36,";
-        private string tag4_13 = "DD-BO, ";
-        private string tag4_14 = "CLIP=";
-        private string tag4_15 = "10/13 23:00";
-        private string tag5_1 = "AAEEMD";
-        private string tag5_2 = "(UL_MOSI_40_C)";
-        private string tag6_1 = "QA1/ASI/IPRO/MPM";
+        txtData tag1_1 = new txtData(); 
 
+        txtData tag1_2 = new txtData(); 
+        txtData tag1_3 = new txtData();  
+        txtData tag2_1 = new txtData();  
+        txtData  tag2_2 = new txtData();  
+        txtData  tag3_1 = new txtData();  
+        txtData  tag3_2 = new txtData(); 
+        txtData  tag3_3 = new txtData(); 
+        txtData  tag4_1 = new txtData();  
+        txtData  tag4_2 = new txtData();  
+        txtData  tag4_3 = new txtData();  
+        txtData  tag4_4 = new txtData();  
+        txtData  tag4_5 = new txtData();  
+        txtData  tag4_6 = new txtData();  
+        txtData  tag4_7 = new txtData();  
+        txtData  tag4_8 = new txtData(); 
+        txtData  tag4_9 = new txtData();  
+        txtData  tag4_10 = new txtData();  
+        txtData  tag4_11 = new txtData();  
+        txtData  tag4_12 = new txtData();  
+        txtData  tag4_13 = new txtData(); 
+        txtData  tag4_14 = new txtData(); 
+        txtData  tag4_15 = new txtData();  
+        txtData  tag5_1 = new txtData(); 
+        txtData  tag5_2 = new txtData();  
+        txtData  tag6_1 = new txtData();  
+        txtData  tag6_2 = new txtData(); 
+        txtData  tag6_3 = new txtData();  
+        txtData  tag6_4 = new txtData();
 
         private int  min = 0;
         private int sec = 0;
@@ -72,6 +76,7 @@ namespace EPaperDemo2
         private static byte[] blackRandomN = new byte[16]{ 0x36, 0x5A, 0xC5, 0x7A, 0x29, 0xB3, 0x1D, 0x8E, 0x3B, 0x59, 0x97, 0xF1, 0xC2, 0x4E, 0xD4, 0xA3 };
         private static byte[] redRandomN = new byte[16] { 0x5C, 0x99, 0xF5, 0x12, 0xD6, 0x3A, 0x38, 0x5C, 0x49, 0xE4, 0xAA, 0x67, 0x91, 0xBD, 0x83, 0x2F };
         bool continueWirte29 = false;
+        bool ReadIDClick = false;
         Stopwatch stopwatch = new Stopwatch();
         Stopwatch stopwatchtext = new Stopwatch();
 
@@ -82,34 +87,72 @@ namespace EPaperDemo2
         Panel panel4Demo = new Panel();
         Panel panel5Demo = new Panel();
         Panel panel6Demo = new Panel();
+        Panel panel7Demo = new Panel();
         Label panel6labelDemo = new Label();
-        TextBox textBox7Demo = new TextBox();
-        TextBox textBox6Demo = new TextBox();
-        TextBox textBox5Demo = new TextBox();
-        TextBox textBox4Demo = new TextBox();
-        TextBox textBox3Demo = new TextBox();
-        TextBox textBox18Demo = new TextBox();
-        TextBox textBox19Demo = new TextBox();
-        TextBox textBox17Demo = new TextBox();
-        TextBox textBox2Demo = new TextBox();
-        TextBox textBox1Demo = new TextBox();
+        Label Label7Demo = new Label();
+        Label Label6Demo = new Label();
+        Label Label62Demo = new Label();
+        Label Label63Demo = new Label();
+        Label Label64Demo = new Label();
+        Label Label5Demo = new Label();
+        Label Label4Demo = new Label();
+        Label Label3Demo = new Label();
+        Label Label18Demo = new Label();
+        Label Label19Demo = new Label();
+        Label Label17Demo = new Label();
+        Label Label2Demo = new Label();
+        Label Label1Demo = new Label();
         Label label5Demo = new Label();
-        Label label3Demo = new Label();
+        Label label13Demo = new Label();
         PictureBox pictureBoxa = new PictureBox();
         Button button2 = new Button();
         // SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-        TextBox textBox8Demo = new TextBox();
-        TextBox textBox16Demo = new TextBox();
+        Label Label8Demo = new Label();
+        Label Label16Demo = new Label();
         public Form1()
         {
+
+
+            tag1_1.tag = "EBUF7E8.1";
+            tag1_2.tag = "EBUF7E8.1";
+            tag1_3.tag = "C1TMJV85156A-M004";
+            tag2_1.tag = "Info:";
+            tag2_2.tag = "3";
+            tag3_1.tag = "PSM";
+            tag3_2.tag = "SECURITY";
+            tag3_3.tag = "SSSHR";
+            tag4_1.tag = "0.028,L,";
+            tag4_2.tag = "193,";
+            tag4_3.tag = "AJBX3-1,";
+            tag4_4.tag = "BK#331";
+            tag4_5.tag = "Tone=";
+            tag4_6.tag = "C,";
+            tag4_7.tag = "CCD=";
+            tag4_8.tag = "0.72, ";
+            tag4_9.tag = "PD=";
+            tag4_10.tag = "23.08%";
+            tag4_11.tag = "Pel=";
+            tag4_12.tag = "36,";
+            tag4_13.tag = "DD-BO, ";
+            tag4_14.tag = "CLIP=";
+            tag4_15.tag = "10/13 23:00";
+            tag5_1.tag = "AAEEMD";
+            tag5_2.tag = "(UL_MOSI_40_C)";
+            tag6_1.tag = "QA1";
+            tag6_2.tag = "ASI";
+            tag6_3.tag = "IPRO";
+            tag6_4.tag = "MPM";
             InitializeComponent();
-          /*  BarcodeWriter qr = new BarcodeWriter();
-            qr.Format = BarcodeFormat.QR_CODE;
-            qr.Options.Width = pictureBox2.Width;
-            qr.Options.Height = pictureBox2.Height;
-            qr.Options.Margin = 0;
-            pictureBox2.Image = qr.Write("www.smartchip.com.tw");*/
-            
+            label2.Visible = false;
+            label4.Visible = false;
+            HINKViewerButton.Visible = false;
+            /*  BarcodeWriter qr = new BarcodeWriter();
+              qr.Format = BarcodeFormat.QR_CODE;
+              qr.Options.Width = pictureBox2.Width;
+              qr.Options.Height = pictureBox2.Height;
+              qr.Options.Margin = 0;
+              pictureBox2.Image = qr.Write("www.smartchip.com.tw");*/
+
             // 找出字體大小,並算出比例
             Graphics graphics = this.CreateGraphics();
             DpiX = graphics.DpiX;
@@ -121,149 +164,212 @@ namespace EPaperDemo2
             UpdateTimer.Interval = 15 * 1000;
 
             UIDReaderTimer.Tick += new EventHandler(UUIDTimer);
-            UIDReaderTimer.Interval = 1*1000;
+            UIDReaderTimer.Interval = 1*500;
             
 
 
 
-            panel3Demo.BorderStyle = BorderStyle.FixedSingle;
-            panel3Demo.Location = new Point(191, 1);
-            panel3Demo.Size = new Size(103, 56);
+          //  panel3Demo.BorderStyle = BorderStyle.FixedSingle;
+            panel3Demo.Location = new Point(170, 1);
+            panel3Demo.Size = new Size(103, 48);
             panel3Demo.TabIndex = 120;
-            panel4Demo.BorderStyle = BorderStyle.FixedSingle;
-            panel4Demo.Location = new Point(146, 57);
-            panel4Demo.Size = new Size(148, 47);
+           // panel4Demo.BorderStyle = BorderStyle.FixedSingle;
+            panel4Demo.Location = new Point(128, 50);
+            panel4Demo.AutoSize = true;
+            panel4Demo.Size = new Size(150, 47);
             panel4Demo.TabIndex = 120;
-            panel5Demo.BorderStyle = BorderStyle.FixedSingle;
-            panel5Demo.Location = new Point(2, 104);
-            panel5Demo.Size = new Size(78, 23);
+          //  panel5Demo.BorderStyle = BorderStyle.FixedSingle;
+            panel5Demo.Location = new Point(2, 92);
+            panel5Demo.Size = new Size(98, 30);
             panel5Demo.TabIndex = 120;
 
-            panel6Demo.BorderStyle = BorderStyle.FixedSingle;
-            panel6Demo.Location = new Point(222, 104);
+        //    panel6Demo.BorderStyle = BorderStyle.FixedSingle;
+            panel6Demo.Location = new Point(246, 98);
             panel6Demo.Size = new Size(72, 23);
             panel6Demo.TabIndex = 120;
+
+            panel7Demo.Location = new Point(105, 100);
+            panel7Demo.Size = new Size(130, 30);
+            panel7Demo.TabIndex = 120;
 
 
             panel29.Controls.Add(panel3Demo);
             panel29.Controls.Add(panel4Demo);
             panel29.Controls.Add(panel5Demo);
             panel29.Controls.Add(panel6Demo);
+            panel29.Controls.Add(panel7Demo);
 
+            //  panel29.Controls.Add(Label7Demo);
 
-            //  panel29.Controls.Add(textBox7Demo);
-            panel29.Controls.Add(textBox6Demo);
-            panel29.Controls.Add(textBox5Demo);
-            panel29.Controls.Add(textBox4Demo);
+            panel29.Controls.Add(Label5Demo);
+            panel29.Controls.Add(Label4Demo);
 
-            // panel1.Controls.Add(textBox3Demo);
-            // panel1.Controls.Add(textBox2);
-            //  panel1.Controls.Add(textBox8Demo);
-            // panel1.Controls.Add(textBox16Demo);
-            // panel1.Controls.Add(textBox17Demo);
-            //panel1.Controls.Add(textBox1);
+            // panel1.Controls.Add(Label3Demo);
+            // panel1.Controls.Add(Label2);
+            //  panel1.Controls.Add(Label8Demo);
+            // panel1.Controls.Add(Label16Demo);
+            // panel1.Controls.Add(Label17Demo);
+            //panel1.Controls.Add(Label1);
             // panel1.Controls.Add(label5Demo);
             //panel1.Controls.Add(label3Demo);
             panel29.Controls.Add(pictureBoxa);
 
-            panel3Demo.Controls.Add(textBox2Demo);
-            panel3Demo.Controls.Add(textBox16Demo);
-            panel3Demo.Controls.Add(textBox17Demo);
-            panel4Demo.Controls.Add(textBox1Demo);
-            panel4Demo.Controls.Add(textBox3Demo);
-            panel4Demo.Controls.Add(textBox19Demo);
-            panel4Demo.Controls.Add(textBox18Demo);
-            panel4Demo.Controls.Add(textBox8Demo);
+            panel3Demo.Controls.Add(Label2Demo);
+            panel3Demo.Controls.Add(Label16Demo);
+            panel3Demo.Controls.Add(Label17Demo);
+            panel4Demo.Controls.Add(Label1Demo);
+            panel4Demo.Controls.Add(Label3Demo);
+            panel4Demo.Controls.Add(Label19Demo);
+            panel4Demo.Controls.Add(Label18Demo);
+            panel4Demo.Controls.Add(Label8Demo);
             panel5Demo.Controls.Add(label5Demo);
-            panel5Demo.Controls.Add(textBox7Demo);
-            panel6Demo.Controls.Add(label3Demo);
+            panel5Demo.Controls.Add(Label7Demo);
+            panel6Demo.Controls.Add(label13Demo);
             panel6Demo.Controls.Add(panel6labelDemo);
+            panel7Demo.Controls.Add(Label6Demo);
+            panel7Demo.Controls.Add(Label62Demo);
+            panel7Demo.Controls.Add(Label63Demo);
+            panel7Demo.Controls.Add(Label64Demo);
 
 
 
-
-            textBox7Demo.BorderStyle = BorderStyle.None;
-            textBox7Demo.Font = new Font("Calibri", 7.8f* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox7Demo.Location = new Point(4, 7);
-            textBox7Demo.ForeColor = Color.Red;
-            textBox7Demo.Name = "textBox7Demo";
-            textBox7Demo.Size = new Size(73, 15);
-            textBox7Demo.TabIndex = 88;
-            textBox7Demo.Text = tag5_2;
-
-
-            textBox6Demo.BorderStyle = BorderStyle.FixedSingle;
-            textBox6Demo.Font = new Font("Cambria", 9.6f* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox6Demo.Location = new Point(80, 104);
-            textBox6Demo.Name = "textBox6Demo";
-            textBox6Demo.Size = new Size(142, 50);
-            textBox6Demo.TabIndex = 29;
-            textBox6Demo.TextAlign = HorizontalAlignment.Center;
-            textBox6Demo.Text = tag6_1;
-
-            textBox5Demo.BorderStyle = BorderStyle.FixedSingle;
-            textBox5Demo.Font = new Font("Calibri", 11.6F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox5Demo.Location = new Point(2, 78);
-            textBox5Demo.Name = "textBox5Demo";
-            textBox5Demo.Size = new Size(144, 10);
-            textBox5Demo.TabIndex = 28;
-            //  textBox5Demo.TextAlign = HorizontalAlignment.Center;
-            textBox5Demo.Text = tag1_3;
+            Label7Demo.BorderStyle = BorderStyle.None;
+            Label7Demo.Font = new Font("Calibri", 9.5f* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Label7Demo.Location = new Point(2, 15);
+            Label7Demo.ForeColor = tag5_2.tagColor;
+            Label7Demo.Name = "Label7Demo";
+            // Label7Demo.Size = new Size(73, 15);
+            Label7Demo.TabIndex = 150;
+            Label7Demo.Text = tag5_2.tag;
+            Label7Demo.AutoSize = true;
 
 
-            textBox4Demo.BorderStyle = BorderStyle.FixedSingle;
-            textBox4Demo.Font = new Font("Calibri", 11.8F* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox4Demo.Location = new Point(2, 51);
-            textBox4Demo.Name = "textBox4Demo";
-            textBox4Demo.Size = new Size(144, 10);
-            textBox4Demo.TabIndex = 27;
-            textBox4Demo.Text = tag1_2;
-            textBox4Demo.TextAlign = HorizontalAlignment.Center;
-            /*  textBox3Demo.BorderStyle = BorderStyle.None;
-              textBox3Demo.Font = new Font("Calibri", 9f, FontStyle.Regular, GraphicsUnit.Point, 0);
-              textBox3Demo.ForeColor = Color.Red;
-              textBox3Demo.Location = new Point(4, 24);
-              textBox3Demo.Name = "textBox3Demo";
-              textBox3Demo.Size = new Size(139, 15);
-              textBox3Demo.TabIndex = 26;
-              textBox3Demo.Text = "瑞新電子股份有限公司";*/
-            textBox2Demo.BorderStyle = BorderStyle.None;
-            textBox2Demo.Font = new Font("Calibri", 12* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox2Demo.Location = new Point(21, -3);
-            textBox2Demo.Name = "textBox2Demo";
-            textBox2Demo.Size = new Size(68, 20);
-            textBox2Demo.TabIndex = 25;
-            textBox2Demo.Text = tag3_1;
-            textBox2Demo.TextAlign = HorizontalAlignment.Center;
+            Label6Demo.BorderStyle = BorderStyle.None;
+            Label6Demo.Font = new Font("Calibri", 9.2f* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Label6Demo.Location = new Point(0, 5);
+            Label6Demo.Name = "Label6Demo";
+            Label6Demo.ForeColor = tag6_1.tagColor;
+
+           // Label6Demo.Size = new Size(20, 30);
+            Label6Demo.TabIndex = 29;
+            //      Label6Demo.TextAlign = HorizontalAlignment.Center;
+            Label6Demo.AutoSize = true;
+            Label6Demo.Text = tag6_1.tag;
+            //Label6Demo.BackColor = Color.Blue;
+
+            Label62Demo.BorderStyle = BorderStyle.None;
+            Label62Demo.Font = new Font("Calibri", 9.2f * floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Label62Demo.Location = new Point(30, 5);
+            Label62Demo.Name = "Label62Demo";
+            Label62Demo.ForeColor = tag6_2.tagColor;
+            Label62Demo.Size = new Size(30, 30);
+            Label62Demo.TabIndex = 29;
+            Label62Demo.AutoSize = true;
+           // Label62Demo.BackColor = Color.Blue;
+            //      Label62Demo.TextAlign = HorizontalAlignment.Center;
+            Label62Demo.Text = tag6_2.tag;
+            Label62Demo.Tag = floatDpi;
+
+            Label63Demo.BorderStyle = BorderStyle.None;
+            Label63Demo.Font = new Font("Calibri", 9.2f * floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Label63Demo.Location = new Point(60, 5);
+            Label63Demo.Name = "Label63Demo";
+            Label63Demo.ForeColor = tag6_3.tagColor;
+            //    Label63Demo.Size = new Size(142, 50);
+            Label63Demo.TabIndex = 29;
+            Label63Demo.AutoSize = true;
+          //  Label63Demo.BackColor = Color.Blue;
+            //      Label63Demo.TextAlign = HorizontalAlignment.Center;
+            Label63Demo.Text = tag6_3.tag;
+            Label63Demo.Tag = floatDpi;
+
+            Label64Demo.BorderStyle = BorderStyle.None;
+            Label64Demo.Font = new Font("Calibri", 9.2f * floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Label64Demo.Location = new Point(90, 5);
+            Label64Demo.Name = "Label64Demo";
+            Label64Demo.ForeColor = tag6_4.tagColor;
+            //    Label64Demo.Size = new Size(142, 50);
+            Label64Demo.TabIndex = 29;
+            Label64Demo.AutoSize = true;
+            //      Label64Demo.TextAlign = HorizontalAlignment.Center;
+            Label64Demo.Text = tag6_4.tag;
+           // Label64Demo.BackColor = Color.Blue;
+            Label64Demo.Tag = floatDpi;
+
+
+            //  Label5Demo.BorderStyle = BorderStyle.FixedSingle;
+            Label5Demo.Font = new Font("Calibri", 10F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Label5Demo.Location = new Point(0, 75);
+            Label5Demo.Name = "Label5Demo";
+           // Label5Demo.Size = new Size(144, 10);
+            Label5Demo.TabIndex = 28;
+            Label5Demo.ForeColor = tag1_3.tagColor;
+            Label5Demo.AutoSize = true;
+            //  Label5Demo.TextAlign = HorizontalAlignment.Center;
+            Label5Demo.Text = tag1_3.tag;
+
+
+          //  Label4Demo.BorderStyle = BorderStyle.FixedSingle;
+            Label4Demo.Font = new Font("Calibri", 20.5F* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Label4Demo.Location = new Point(0, 38);
+            Label4Demo.Name = "Label4Demo";
+            Label4Demo.Size = new Size(130, 10);
+            Label4Demo.TabIndex = 27;
+            Label4Demo.ForeColor = tag1_2.tagColor;
+            Label4Demo.Text = tag1_2.tag;
+            Label4Demo.AutoSize = true;
+            // Label4Demo.TextAlign = HorizontalAlignment.Center;
+            /*  Label3Demo.BorderStyle = BorderStyle.None;
+              Label3Demo.Font = new Font("Calibri", 9f, FontStyle.Regular, GraphicsUnit.Point, 0);
+              Label3Demo.ForeColor = Color.Red;
+              Label3Demo.Location = new Point(4, 24);
+              Label3Demo.Name = "Label3Demo";
+              Label3Demo.Size = new Size(139, 15);
+              Label3Demo.TabIndex = 26;
+              Label3Demo.Text = "瑞新電子股份有限公司";*/
+            Label2Demo.BorderStyle = BorderStyle.None;
+            Label2Demo.Font = new Font("Calibri", 12* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Label2Demo.ForeColor = tag3_1.tagColor;
+            Label2Demo.Name = "Label2Demo";
+           // Label2Demo.Size = new Size(68, 20);
+            Label2Demo.TabIndex = 25;
+            Label2Demo.Text = tag3_1.tag;
+            Label2Demo.AutoSize = true;
+            int c = panel3Demo.Width / 2 - Label2Demo.Width / 2;
+            Label2Demo.Location = new Point(c, -3);
+            //  Label2Demo.TextAlign = HorizontalAlignment.Center;
 
             label5Demo.AutoSize = true;
-            label5Demo.Font = new Font("Calibri", 6* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5Demo.Location = new Point(22, 0);
+            label5Demo.Font = new Font("Calibri", 9.8F* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5Demo.Location = new Point(15, 0);
+            label5Demo.ForeColor = tag5_1.tagColor;
             label5Demo.Name = "label5Demo";
-            label5Demo.Size = new Size(25, 10);
+        //    label5Demo.Size = new Size(25, 10);
             label5Demo.TabIndex = 21;
-            label5Demo.Text = tag5_1;
+            label5Demo.Text = tag5_1.tag;
 
 
-            label3Demo.AutoSize = true;
-            label3Demo.Font = new Font("Calibri", 9f* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3Demo.Location = new Point(1, 5);
-            label3Demo.Name = "Info";
-            label3Demo.Size = new Size(10, 14);
-            label3Demo.TabIndex = 19;
-            label3Demo.Text = tag2_1;
-            panel6labelDemo.AutoSize = false;
+
+            label13Demo.AutoSize = true;
+            label13Demo.Font = new Font("Calibri", 9f* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13Demo.Location = new Point(3, 5);
+            label13Demo.Name = "Info";
+            //  label3Demo.Size = new Size(10, 14);
+            label13Demo.ForeColor = tag2_1.tagColor;
+            label13Demo.TabIndex = 19;
+            label13Demo.Text = tag2_1.tag;
+            panel6labelDemo.AutoSize = true;
             string str = System.AppDomain.CurrentDomain.BaseDirectory;
             //   Console.WriteLine("str" + str);
             //  string filename = str + "circle.jpg";
             //  panel6labelDemo.Image = Image.FromFile(@filename);
             //  panel6labelDemo.BackColor = Color.Red;
             panel6labelDemo.Font = new Font("Calibri", 12* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
-            panel6labelDemo.Location = new Point(30, 3);
+            panel6labelDemo.Location = new Point(27, 3);
             panel6labelDemo.Name = "panel6labelDemo";
             panel6labelDemo.Size = new Size(19, 19);
             panel6labelDemo.TabIndex = 100;
-            panel6labelDemo.Text = tag2_2;
+            panel6labelDemo.Text = tag2_2.tag;
             panel6labelDemo.ForeColor = Color.White;
             panel6labelDemo.TextAlign = ContentAlignment.MiddleCenter;
           //  panel6labelDemo.Paint += new PaintEventHandler(panel6labelDemo_Paint);
@@ -272,76 +378,93 @@ namespace EPaperDemo2
 
 
 
-            textBox3Demo.BorderStyle = BorderStyle.None;
-            textBox3Demo.Font = new Font("Calibri", 8.5F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3Demo.Location = new Point(-5, 3);
-            textBox3Demo.Name = "textBox3Demo";
-            textBox3Demo.Size = new Size(84, 15);
-            textBox3Demo.TabIndex = 26;
-            textBox3Demo.Text += (tag4_1 + tag4_2 + tag4_3);
-            textBox18Demo.BorderStyle = BorderStyle.None;
-            textBox18Demo.Font = new Font("Calibri", 8.5F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox18Demo.ForeColor = Color.Red;
-            textBox18Demo.Location = new Point(95, 3);
-            textBox18Demo.Name = "textBox18Demo";
-            textBox18Demo.Size = new Size(30, 15);
-            textBox18Demo.TabIndex = 229;
-            textBox18Demo.Text += (tag4_4);
-            // textBox18Demo.TextAlign = HorizontalAlignment.Center;
-
-            textBox1Demo.BorderStyle = BorderStyle.None;
-            textBox1Demo.Font = new Font("Calibri", 8.5F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1Demo.Location = new Point(-5, 15);
-            textBox1Demo.Name = "textBox1Demo";
-            textBox1Demo.Size = new Size(139, 15);
-            textBox1Demo.TabIndex = 24;
-            textBox1Demo.Text += (tag4_5 + tag4_6 + tag4_7 + tag4_8 + tag4_9 + tag4_10);
-            //textBox1Demo.TextAlign = HorizontalAlignment.Center;
+            Label3Demo.BorderStyle = BorderStyle.None;
+            Label3Demo.Font = new Font("Calibri", 9F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Label3Demo.Location = new Point(0, 3);
+            Label3Demo.Name = "Label3Demo";
+            //  Label3Demo.Size = new Size(84, 15);
+            Label3Demo.ForeColor = tag4_1.tagColor;
+            Label3Demo.TabIndex = 26;
+            Label3Demo.Text += (tag4_1.tag + tag4_2.tag + tag4_3.tag);
+            Label3Demo.AutoSize = true;
 
 
-            textBox8Demo.BorderStyle = BorderStyle.None;
-            textBox8Demo.Location = new Point(-5, 28);
-            textBox8Demo.Font = new Font("Calibri", 8.5F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox8Demo.Name = "textBox8Demo";
-            textBox8Demo.Size = new Size(87, 15);
-            textBox8Demo.TabIndex = 8;
-            textBox8Demo.Text += (tag4_11 + tag4_12 + tag4_13 + tag4_14);
-            // textBox8Demo.TextAlign = HorizontalAlignment.Center;
+            Label18Demo.BorderStyle = BorderStyle.None;
+            Label18Demo.Font = new Font("Calibri", 9F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Label18Demo.ForeColor = tag4_4.tagColor;
+            Label18Demo.Location = new Point(104, 3);
+            Label18Demo.Name = "Label18Demo";
+         //   Label18Demo.Size = new Size(30, 15);
+            Label18Demo.TabIndex = 229;
+            Label18Demo.Text += (tag4_4.tag);
+            Label18Demo.AutoSize = true;
+            // Label18Demo.TextAlign = HorizontalAlignment.Center;
 
-            textBox19Demo.BorderStyle = BorderStyle.None;
-            textBox19Demo.Font = new Font("Calibri", 8.5F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox19Demo.ForeColor = Color.Red;
-            textBox19Demo.Location = new Point(89, 28);
-            textBox19Demo.Name = "textBox19Demo";
-            textBox19Demo.Size = new Size(58, 15);
-            textBox19Demo.TabIndex = 229;
-            textBox19Demo.Text += (tag4_15);
-            textBox19Demo.TextAlign = HorizontalAlignment.Center;
-
-            textBox16Demo.BorderStyle = BorderStyle.None;
-            textBox16Demo.Location = new Point(20, 12);
-            textBox16Demo.Font = new Font("Calibri", 12* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox16Demo.ForeColor = Color.Red;
-            textBox16Demo.Name = "textBox16Demo";
-            textBox16Demo.Size = new Size(68, 15);
-            textBox16Demo.TabIndex = 55;
-            textBox16Demo.Text += (tag3_2);
-            textBox16Demo.TextAlign = HorizontalAlignment.Center;
+            Label1Demo.BorderStyle = BorderStyle.None;
+            Label1Demo.Font = new Font("Calibri", 9F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Label1Demo.Location = new Point(0, 15);
+            Label1Demo.Name = "Label1Demo";
+            Label1Demo.ForeColor = tag4_5.tagColor;
+            // Label1Demo.Size = new Size(139, 15);
+            Label1Demo.TabIndex = 24;
+            Label1Demo.Text += (tag4_5.tag + tag4_6.tag + tag4_7.tag + tag4_8.tag + tag4_9.tag + tag4_10.tag);
+            Label1Demo.AutoSize = true;
+            //Label1Demo.TextAlign = HorizontalAlignment.Center;
 
 
+            Label8Demo.BorderStyle = BorderStyle.None;
+            Label8Demo.Location = new Point(0, 28);
+            Label8Demo.Font = new Font("Calibri", 9F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Label8Demo.Name = "Label8Demo";
+            Label8Demo.ForeColor = tag4_11.tagColor;
+            //   Label8Demo.Size = new Size(87, 15);
+            Label8Demo.TabIndex = 8;
+            Label8Demo.Text += (tag4_11.tag + tag4_12.tag + tag4_13.tag + tag4_14.tag);
+            Label8Demo.AutoSize = true;
+            // Label8Demo.TextAlign = HorizontalAlignment.Center;
 
-            textBox17Demo.BorderStyle = BorderStyle.None;
-            textBox17Demo.Location = new Point(0, 28);
-            textBox17Demo.Font = new Font("Calibri", 12* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox17Demo.ForeColor = Color.Red;
-            textBox17Demo.Name = "textBox16Demo";
-            textBox17Demo.Size = new Size(112, 15);
-            textBox17Demo.TabIndex = 56;
-            textBox17Demo.Text += (tag3_3);
-            textBox17Demo.TextAlign = HorizontalAlignment.Center;
-            pictureBoxa.Location = new Point(3, 2);
+            Label19Demo.BorderStyle = BorderStyle.None;
+            Label19Demo.Font = new Font("Calibri", 9F* floatDpi, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Label19Demo.Location = new Point(105, 28);
+            Label19Demo.Name = "Label19Demo";
+            Label19Demo.ForeColor = tag4_15.tagColor;
+            //  Label19Demo.Size = new Size(58, 15);
+            Label19Demo.TabIndex = 229;
+            Label19Demo.Text += (tag4_15.tag);
+            Label19Demo.AutoSize = true;
+            //    Label19Demo.TextAlign = HorizontalAlignment.Center;
+
+            Label16Demo.BorderStyle = BorderStyle.None;
+            
+            Label16Demo.Font = new Font("Calibri", 12* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Label16Demo.ForeColor = Color.Red;
+            Label16Demo.Name = "Label16Demo";
+            Label16Demo.ForeColor = tag3_2.tagColor;
+            //    Label16Demo.Size = new Size(68, 15);
+            Label16Demo.TabIndex = 55;
+            Label16Demo.Text += (tag3_2.tag);
+            Label16Demo.AutoSize = true;
+            int b = panel3Demo.Width / 2 - Label16Demo.Width / 2;
+            Label16Demo.Location = new Point(b, 12);
+            //  Label16Demo.TextAlign = HorizontalAlignment.Center;
+
+
+
+            Label17Demo.BorderStyle = BorderStyle.None;
+
+            Label17Demo.Font = new Font("Calibri", 12* floatDpi, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Label17Demo.ForeColor = Color.Red;
+            Label17Demo.Name = "Label17Demo";
+            //  Label17Demo.Size = new Size(112, 15);
+            Label17Demo.ForeColor = tag3_3.tagColor;
+            Label17Demo.TabIndex = 56;
+            Label17Demo.Text += (tag3_3.tag);
+            Label17Demo.AutoSize = true;
+            int a = panel3Demo.Width / 2 - Label17Demo.Width / 2;
+            Label17Demo.Location = new Point(a, 28);
+            pictureBoxa.Location = new Point(25, 10);
             pictureBoxa.Name = "pictureBoxa";
-            pictureBoxa.Size = new Size(146, 46);
+            pictureBoxa.Size = new Size(146, 30);
 
            // Bitmap bar = new Bitmap(pictureBox2.Width, pictureBox2.Height);
             BarcodeWriter barcode_w = new BarcodeWriter();
@@ -430,9 +553,9 @@ namespace EPaperDemo2
             bmp = new Bitmap(bmpsizew, bmpsizeh);
 
 
-            if (textBox8.Text.Length != 0)
+            if (Label8.Text.Length != 0)
             {
-                pictureBox2.Image = qr.Write(textBox8.Text);
+                pictureBox2.Image = qr.Write(Label8.Text);
             }
 
             using (Graphics graphics = Graphics.FromImage(bmp))
@@ -445,17 +568,17 @@ namespace EPaperDemo2
 
                 if (ctl is CheckBox) // 判斷為 CheckBox 時，將 CheckBox.Checked 設為 True。
                     ((CheckBox)ctl).Checked = true;
-                else if (ctl is TextBox) // 判斷為 TextBox 時，將 CheckBox.Text 設為 "Hello world!"。
+                else if (ctl is Label) // 判斷為 Label 時，將 CheckBox.Text 設為 "Hello world!"。
                 {
-                    //((TextBox)ctl).Text = "1";
-                    int x = ((TextBox)ctl).Location.X;
-                    int y = ((TextBox)ctl).Location.Y;
-                    int w = ((TextBox)ctl).Width;
-                    int h = ((TextBox)ctl).Height;
+                    //((Label)ctl).Text = "1";
+                    int x = ((Label)ctl).Location.X;
+                    int y = ((Label)ctl).Location.Y;
+                    int w = ((Label)ctl).Width;
+                    int h = ((Label)ctl).Height;
                   //  Console.WriteLine(x + "," + y + "  w:" + w + ", h:" + h);
 
 
-                    bmp = mSmcEink.ConvertTextToImage(bmp, ((TextBox)ctl), Color.White, x, y);
+                    bmp = mSmcEink.ConvertTextToImage(bmp, ((Label)ctl), Color.White, x, y);
                     //}
 
                 }
@@ -642,10 +765,24 @@ namespace EPaperDemo2
 
         private void ReadUID_Click(object sender, EventArgs e)
         {
-            string com = "040116";
-            byte[] bcom = iCheckSum(StringToByteArray(com));
-            SendData(bcom);
-            Write_Check = false;
+         
+            if (!ReadIDClick)
+            {
+                UIDReaderTimer.Start();
+                ReadUID.Text = "停止讀取";
+                ReadUID.ForeColor = Color.Red;
+                ReadIDClick = true;
+            }
+            else
+            {
+                UIDReaderTimer.Stop();
+                ReadUID.Text = "讀取Tag";
+                ReadUID.ForeColor = Color.Black;
+                ReadIDClick = false;
+
+            }
+
+
         }
 
 
@@ -662,7 +799,7 @@ namespace EPaperDemo2
 
         private void WritePage_Click(object sender, EventArgs e)
         {
-          /*  string com = "090126" + "04" + ultralightTextBox.Text;
+          /*  string com = "090126" + "04" + ultralightLabel.Text;
             byte[] bcom = iCheckSum(StringToByteArray(com));
             SendData(bcom);
             Write_Check = false;*/
@@ -737,10 +874,10 @@ namespace EPaperDemo2
                     string com = "150127" + "00" + t.Substring(0, substringcount);
                     byte[] bcom = iCheckSum(StringToByteArray(com));
                     SendData(bcom);
+                        Thread.Sleep(37);
                     count++;
                /*     for (int i = 0; i < 592; i++)
                     {
-                        Thread.Sleep(37);
                         dddd();
                     }
                     */
@@ -871,10 +1008,10 @@ namespace EPaperDemo2
                         Write_Check = false;
 
 
-                        Bitmap bmp = setESLimageDemo_29(panel29, tag1_1);
+                        Bitmap bmp = setESLimageDemo_29(panel29, tag1_1.tag);
                         if (bmp != null)
                         {
-
+                            pictureBox_29.Image = bmp;
                             string bit = "";
                             string rbit = "";
                             string totaldata = "";
@@ -942,7 +1079,10 @@ namespace EPaperDemo2
 
         }
 
-
+        public class txtData {
+            public string tag;
+            public Color tagColor = Color.Black;
+        }
 
         public static byte[] iCheckSum(byte[] data)
         {
@@ -1099,7 +1239,7 @@ namespace EPaperDemo2
         //--------------------------合力泰---------------------------------------------
         private void HINKViewerButton_Click(object sender, EventArgs e)
         {
-            Bitmap aa = setESLimageDemo_29(panel29,tag1_1);
+            Bitmap aa = setESLimageDemo_29(panel29,tag1_1.tag);
             pictureBox_29.Image = aa;
         }
 
@@ -1110,11 +1250,19 @@ namespace EPaperDemo2
             total_count = 0;
             Write_Check = false;
 
+            if (ReadIDClick)
+            {
+                UIDReaderTimer.Stop();
+                ReadUID.Text = "讀取Tag";
+                ReadUID.ForeColor = Color.Black;
+                ReadIDClick = false;
+            }
 
-           Bitmap bmp =  setESLimageDemo_29(panel29, tag1_1);
+           Bitmap bmp =  setESLimageDemo_29(panel29, tag1_1.tag);
+
             if (bmp != null)
             {
-
+                pictureBox_29.Image = bmp;
                 string bit = "";
                 string rbit = "";
                 string totaldata = "";
@@ -1191,15 +1339,15 @@ namespace EPaperDemo2
 
                 if (ctl is CheckBox) // 判斷為 CheckBox 時，將 CheckBox.Checked 設為 True。
                     ((CheckBox)ctl).Checked = true;
-                else if (ctl is TextBox) // 判斷為 TextBox 時，將 CheckBox.Text 設為 "Hello world!"。
+                else if (ctl is Label) // 判斷為 Label 時，將 CheckBox.Text 設為 "Hello world!"。
                 {
-                    //((TextBox)ctl).Text = "1";
-                    int x = ((TextBox)ctl).Location.X;
-                    int y = ((TextBox)ctl).Location.Y;
-                    int w = ((TextBox)ctl).Width;
-                    int h = ((TextBox)ctl).Height;
+                    //((Label)ctl).Text = "1";
+                    int x = ((Label)ctl).Location.X;
+                    int y = ((Label)ctl).Location.Y;
+                    int w = ((Label)ctl).Width;
+                    int h = ((Label)ctl).Height;
                  //   Console.WriteLine(x + "," + y + "  w:" + w + ", h:" + h);
-                    bmp = mSmcEink.ConvertTextToImage(bmp, ((TextBox)ctl), Color.White, x, y);
+                    bmp = mSmcEink.ConvertTextToImage(bmp, ((Label)ctl), Color.White, x, y);
 
                 }
 
@@ -1248,14 +1396,14 @@ namespace EPaperDemo2
                 {
                     ((CheckBox)control).Checked = true;
                 }
-                else if (control is TextBox)
+                else if (control is Label)
                 {
-                    int x = ((TextBox)control).Location.X;
-                    int y = ((TextBox)control).Location.Y;
-                    int width = ((TextBox)control).Width;
-                    int height = ((TextBox)control).Height;
+                    int x = ((Label)control).Location.X;
+                    int y = ((Label)control).Location.Y;
+                    int width = ((Label)control).Width;
+                    int height = ((Label)control).Height;
               //      Console.WriteLine(string.Concat(new object[] { x, ",", y, "  w:", width, ", h:", height }));
-                    bmp = this.mSmcEink.ConvertTextToImageDemo(bmp, (TextBox)control, Color.White, x, y);
+                    bmp = this.mSmcEink.ConvertTextToImageDemo(bmp, (Label)control, Color.White, x, y);
                 }
                 else if (control is Panel)
                 {
@@ -1387,6 +1535,16 @@ namespace EPaperDemo2
         private void continue29_Click(object sender, EventArgs e)
         {
             continueWirte29 = true;
+
+            if (ReadIDClick)
+            {
+                UIDReaderTimer.Stop();
+                ReadUID.Text = "讀取Tag";
+                ReadUID.ForeColor = Color.Black;
+                ReadIDClick = false;
+            }
+            label2.Visible = true;
+            label4.Visible = true;
             string com = "040116";
             byte[] bcom = iCheckSum(StringToByteArray(com));
             SendData(bcom);
@@ -1425,7 +1583,6 @@ namespace EPaperDemo2
                 //List<text_data_list> dataList = new List<text_data_list>();
                 string txtPath = openFileDialog1.FileName;
                 string file = Path.GetExtension(openFileDialog1.FileName);
-                Console.WriteLine("file:" + file);
                 if (file == ".txt")
                 {
                     using (StreamReader sr = File.OpenText(openFileDialog1.FileName))
@@ -1434,9 +1591,38 @@ namespace EPaperDemo2
                         String input;
                         int j = 0;
                         int t7 = 0;
+                        tag1_1.tag = null;
+                        tag1_2.tag = null;
+                        tag1_3.tag = null;
+                        tag2_1.tag = null;
+                        tag2_2.tag = null;
+                        tag3_1.tag = null;
+                        tag3_2.tag = null;
+                        tag3_3.tag = null;
+                        tag4_1.tag = null;
+                        tag4_2.tag = null;
+                        tag4_3.tag = null;
+                        tag4_4.tag = null;
+                        tag4_5.tag = null;
+                        tag4_6.tag = null;
+                        tag4_7.tag = null;
+                        tag4_8.tag = null;
+                        tag4_9.tag = null;
+                        tag4_10.tag = null;
+                        tag4_11.tag = null;
+                        tag4_12.tag = null;
+                        tag4_13.tag = null;
+                        tag4_14.tag = null;
+                        tag4_15.tag = null;
+                        tag5_1.tag = null;
+                        tag5_2.tag = null;
+                        tag6_1.tag = null;
+                        tag6_2.tag = null;
+                        tag6_3.tag = null;
+                        tag6_4.tag = null;
                         while ((input = sr.ReadLine()) != null)
                         {
-                            input = input.Trim('@');
+                            Color color = Color.Black;
                             if (j == 7 && t7 < 1)
                             {
                                 t7++;
@@ -1447,92 +1633,136 @@ namespace EPaperDemo2
                                       j++;*/
                                 if (input.Length > 0)
                                 {
+                                    if (input.IndexOf('@') > -1)
+                                    {
+                                        color = Color.Red;
+                                        input = input.Trim('@');
+                                    }
+                                        
+
                                     switch (j)
                                     {
                                         case 0:
-                                            tag1_1 = input;
+                                            tag1_1.tagColor = color;
+                                            tag1_1.tag = input;
                                             break;
                                         case 1:
-                                            tag1_2 = input;
+                                            tag1_2.tagColor = color;
+                                            tag1_2.tag = input;
                                             break;
                                         case 2:
-                                            tag1_3 = input;
+                                            tag1_3.tagColor = color;
+                                            tag1_3.tag = input;
                                             break;
                                         case 3:
-                                            tag2_1 = input;
+                                            tag2_1.tagColor = color;
+                                            tag2_1.tag = input;
                                             break;
                                         case 4:
-                                            tag2_2 = input;
+                                            tag2_2.tagColor = color;
+                                            tag2_2.tag = input;
                                             break;
                                         case 5:
-                                            tag3_1 = input;
+                                            tag3_1.tagColor = color;
+                                            tag3_1.tag = input;
                                             break;
                                         case 6:
-                                            tag3_2 = input;
+                                            tag3_2.tagColor = color;
+                                            tag3_2.tag = input;
                                             break;
                                         case 7:
-                                            tag3_3 = input;
+                                            tag3_3.tagColor = color;
+                                            tag3_3.tag = input;
                                             break;
                                         case 8:
-                                            tag4_1 = input;
+                                            tag4_1.tagColor = color;
+                                            tag4_1.tag = input;
                                             break;
                                         case 9:
-                                            tag4_2 = input;
+                                            tag4_2.tagColor = color;
+                                            tag4_2.tag = input;
                                             break;
                                         case 10:
-                                            tag4_3 = input;
+                                            tag4_3.tagColor = color;
+                                            tag4_3.tag = input;
                                             break;
                                         case 11:
-                                            tag4_4 = input;
+                                            tag4_4.tagColor = color;
+                                            tag4_4.tag = input;
                                             break;
                                         case 12:
-                                            tag4_5 = input;
+                                            tag4_5.tagColor = color;
+                                            tag4_5.tag = input;
                                             break;
                                         case 13:
-                                            tag4_6 = input;
+                                            tag4_6.tagColor = color;
+                                            tag4_6.tag = input;
                                             break;
                                         case 14:
-                                            tag4_7 = input;
+                                            tag4_7.tagColor = color;
+                                            tag4_7.tag = input;
                                             break;
                                         case 15:
-                                            tag4_8 = input;
+                                            tag4_8.tagColor = color;
+                                            tag4_8.tag = input;
                                             break;
                                         case 16:
-                                            tag4_9 = input;
+                                            tag4_9.tagColor = color;
+                                            tag4_9.tag = input;
                                             break;
                                         case 17:
-                                            tag4_10 = input;
+                                            tag4_10.tagColor = color;
+                                            tag4_10.tag = input;
                                             break;
                                         case 18:
-                                            tag4_11 = input;
+                                            tag4_11.tagColor = color;
+                                            tag4_11.tag = input;
                                             break;
                                         case 19:
-                                            tag4_12 = input;
+                                            tag4_12.tagColor = color;
+                                            tag4_12.tag = input;
                                             break;
                                         case 20:
-                                            tag4_13 = input;
+                                            tag4_13.tagColor = color;
+                                            tag4_13.tag = input;
                                             break;
                                         case 21:
-                                            tag4_14 = input;
+                                            tag4_14.tagColor = color;
+                                            tag4_14.tag = input;
                                             break;
                                         case 22:
-                                            tag4_15 = input;
+                                            tag4_15.tagColor = color;
+                                            tag4_15.tag = input;
                                             break;
                                         case 23:
-                                            tag5_1 = input;
+                                            tag5_1.tagColor = color;
+                                            tag5_1.tag = input;
                                             break;
                                         case 24:
-                                            tag5_2 = input;
+                                            tag5_2.tagColor = color;
+                                            tag5_2.tag = input;
                                             break;
                                         case 25:
-                                            tag6_1 = input;
+                                            tag6_1.tagColor = color;
+                                            tag6_1.tag = input;
+                                            break;
+                                        case 26:
+                                            tag6_2.tagColor = color;
+                                            tag6_2.tag = input;
+                                            break;
+                                        case 27:
+                                            tag6_3.tagColor = color;
+                                            tag6_3.tag = input;
+                                            break;
+                                        case 28:
+                                            tag6_4.tagColor = color;
+                                            tag6_4.tag = input;
                                             break;
                                         default:
                                             Console.WriteLine("Default case");
                                             break;
                                     }
                                     j++;
-                                    Console.WriteLine("j:" + j + "A:" + input);
 
                                 }
 
@@ -1545,24 +1775,50 @@ namespace EPaperDemo2
                     }
                 }
             }
+
+            Bitmap aa = setESLimageDemo_29(panel29, tag1_1.tag);
+            pictureBox_29.Image = aa;
         }
 
 
         public void uodateTxt()
         {
-            this.textBox4Demo.Text = tag1_2;
-            this.textBox5Demo.Text = tag1_3;
-            this.label3Demo.Text = tag2_1;
-            this.panel6labelDemo.Text = tag2_2;
-            this.textBox2Demo.Text = tag3_1;
-            this.textBox16Demo.Text = tag3_2;
-            this.textBox17Demo.Text = tag3_3;
-            this.textBox3Demo.Text = (tag4_1 + tag4_2 + tag4_3);
-            this.textBox18Demo.Text = (tag4_4);
-            this.textBox1Demo.Text = (tag4_5 + tag4_6 + tag4_7 + tag4_8 + tag4_9 + tag4_10);
-            this.textBox8Demo.Text = (tag4_11 + tag4_12 + tag4_13 + tag4_14);
-            this.textBox19Demo.Text = (tag4_15);
-            this.label5Demo.Text = tag5_1;  
+            this.Label4Demo.Text = tag1_2.tag;
+            this.Label4Demo.ForeColor = tag1_2.tagColor;
+            this.Label5Demo.Text = tag1_3.tag;
+            this.Label5Demo.ForeColor = tag1_3.tagColor;
+            this.label13Demo.Text = tag2_1.tag;
+            this.label13Demo.ForeColor = tag2_1.tagColor;
+          //  this.panel6labelDemo.Text = tag2_2.tag;
+           // this.panel6labelDemo.ForeColor = tag2_2.tagColor;
+            this.Label2Demo.Text = tag3_1.tag;
+            this.Label2Demo.ForeColor = tag3_1.tagColor;
+            this.Label16Demo.Text = tag3_2.tag;
+            this.Label16Demo.ForeColor = tag3_2.tagColor;
+            this.Label17Demo.Text = tag3_3.tag;
+            this.Label17Demo.ForeColor = tag3_3.tagColor;
+            this.Label3Demo.Text = (tag4_1.tag + tag4_2.tag + tag4_3.tag);
+            this.Label3Demo.ForeColor = tag4_1.tagColor;
+            this.Label18Demo.Text = (tag4_4.tag);
+            this.Label18Demo.ForeColor = tag4_4.tagColor;
+            this.Label1Demo.Text = (tag4_5.tag + tag4_6.tag + tag4_7.tag + tag4_8.tag + tag4_9.tag + tag4_10.tag);
+            this.Label1Demo.ForeColor = tag4_5.tagColor;
+            this.Label8Demo.Text = (tag4_11.tag + tag4_12.tag + tag4_13.tag + tag4_14.tag);
+            this.Label8Demo.ForeColor = tag4_11.tagColor;
+            this.Label19Demo.Text = (tag4_15.tag);
+            this.Label19Demo.ForeColor = tag4_15.tagColor;
+            this.label5Demo.Text = tag5_1.tag;
+            this.label5Demo.ForeColor = tag5_1.tagColor;
+            this.Label7Demo.Text = tag5_2.tag;
+            this.Label7Demo.ForeColor = tag5_2.tagColor;
+            this.Label6Demo.Text = tag6_1.tag;
+            this.Label6Demo.ForeColor = tag6_1.tagColor;
+            this.Label62Demo.Text = tag6_2.tag;
+            this.Label62Demo.ForeColor = tag6_2.tagColor;
+            this.Label63Demo.Text = tag6_3.tag;
+            this.Label63Demo.ForeColor = tag6_3.tagColor;
+            this.Label64Demo.Text = tag6_4.tag;
+            this.Label64Demo.ForeColor = tag6_4.tagColor;
 
 
         }

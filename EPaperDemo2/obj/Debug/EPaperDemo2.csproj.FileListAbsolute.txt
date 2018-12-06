@@ -108,3 +108,14 @@ C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPape
 C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.TrustInfo.xml
 C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.exe.manifest
 C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite\EPaperDemo2\obj\Debug\EPaperDemo2.application
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Debug\EPaperDemo2.exe.config
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Debug\EPaperDemo2.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Debug\System.Net.Http.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\Debug\System.Net.Http.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.csprojResolveAssemblyReference.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.Form1.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.Properties.Resources.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\Debug\EPaperDemo2.csproj.GenerateResource.Cache
