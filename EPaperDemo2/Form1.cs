@@ -4,17 +4,21 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+//using TIBCO.Rendezvous;
+using SmcEslLib;
 
 using ZXing;                  // for BarcodeWriter
 
 namespace EPaperDemo2
 {
+
     public partial class Form1 : Form
     {
 
@@ -25,7 +29,8 @@ namespace EPaperDemo2
         SmcEink mSmcEink = new SmcEink();
         float DpiX, DpiY;
 
-        public SerialPort port = new SerialPort();
+        NfcEslLib NfcEslLib = new NfcEslLib();
+
         private List<byte> packet = new List<byte>();
         delegate void Display(Byte[] buffer);// UI讀取用
         Boolean isConnect;
@@ -36,7 +41,7 @@ namespace EPaperDemo2
         static System.Windows.Forms.Timer WriteTimer = new System.Windows.Forms.Timer();
         static System.Windows.Forms.Timer UpdateTimer = new System.Windows.Forms.Timer();
         static System.Windows.Forms.Timer UIDReaderTimer = new System.Windows.Forms.Timer();
-
+        static System.Windows.Forms.Timer ESLCCloseTwoSTimer = new System.Windows.Forms.Timer();
 
         txtData tag1_1 = new txtData(); 
 
@@ -73,10 +78,9 @@ namespace EPaperDemo2
         private int sec = 0;
         private int secm = 0;
         private int updateCount = 0;
-        private static byte[] blackRandomN = new byte[16]{ 0x36, 0x5A, 0xC5, 0x7A, 0x29, 0xB3, 0x1D, 0x8E, 0x3B, 0x59, 0x97, 0xF1, 0xC2, 0x4E, 0xD4, 0xA3 };
-        private static byte[] redRandomN = new byte[16] { 0x5C, 0x99, 0xF5, 0x12, 0xD6, 0x3A, 0x38, 0x5C, 0x49, 0xE4, 0xAA, 0x67, 0x91, 0xBD, 0x83, 0x2F };
         bool continueWirte29 = false;
         bool ReadIDClick = false;
+        int errorCount=0;
         Stopwatch stopwatch = new Stopwatch();
         Stopwatch stopwatchtext = new Stopwatch();
 
@@ -105,14 +109,39 @@ namespace EPaperDemo2
         Label label5Demo = new Label();
         Label label13Demo = new Label();
         PictureBox pictureBoxa = new PictureBox();
-        Button button2 = new Button();
         // SaveFileDialog saveFileDialog1 = new SaveFileDialog();
         Label Label8Demo = new Label();
         Label Label16Demo = new Label();
+        TextBox scanDirTextBox = new TextBox();
+
+
+
+        string SendDaemon = null;
+     //   static Transport transport = null;
+      //  static Transport transportlisten = null;
+        Thread t1 = null;
+
+      //  Thread t1 = new Thread(new Th(MyBackgroundTask));
+        static TextBox listenMessage = new TextBox();
+        static TextBox scanDirFileName = new TextBox();
+        static TextBox test = new TextBox();
+        private delegate void UpdateUICallBack(string value, Control ctl);
+
+        static bool fStation = false;
+        static bool sStation = false;
+        static bool tStation = false;
+        static string listenSubject = null;
+      //  static Listener listener = null;
+        string NFCID = null;
+        static List<MessageClass> backMessage = new List<MessageClass>();
+
+        delegate void ReceiveDataInvoker(EventArgs e);
+
+
         public Form1()
         {
 
-
+            NfcEslLib.onSMCEslReceiveEvent += new EventHandler(SMCEslReceiveEvent); //全資料回傳
             tag1_1.tag = "EBUF7E8.1";
             tag1_2.tag = "EBUF7E8.1";
             tag1_3.tag = "C1TMJV85156A-M004";
@@ -164,12 +193,14 @@ namespace EPaperDemo2
             UpdateTimer.Interval = 15 * 1000;
 
             UIDReaderTimer.Tick += new EventHandler(UUIDTimer);
-            UIDReaderTimer.Interval = 1*500;
-            
+            UIDReaderTimer.Interval = 1*1000;
+
+            ESLCCloseTwoSTimer.Tick += new EventHandler(ESLCCloseTwoSFunTimer);
+            ESLCCloseTwoSTimer.Interval = 1 * 2000;
 
 
 
-          //  panel3Demo.BorderStyle = BorderStyle.FixedSingle;
+            //  panel3Demo.BorderStyle = BorderStyle.FixedSingle;
             panel3Demo.Location = new Point(170, 1);
             panel3Demo.Size = new Size(103, 48);
             panel3Demo.TabIndex = 120;
@@ -488,6 +519,12 @@ namespace EPaperDemo2
 
 
 
+
+            SendDaemon = SendDaemonRead();
+            listenMessage.TextChanged += new System.EventHandler(listenMessage_TextChanged);
+            scanDirFileName.TextChanged += new System.EventHandler(scanDirFileName_TextChanged);
+            
+            test.TextChanged += new System.EventHandler(test_TextChanged);
         }
 
 
@@ -612,129 +649,12 @@ namespace EPaperDemo2
 
     
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Red = true;
-            count = 0;
-            total_count = 0;
-            Write_Check = false;
-            setImageData();
-            if (bmp != null)
-            {
-
-                string bit = "";
-                string rbit = "";
-                string totaldata = "";
-                string totalreddata = "";
-                tatolbit = "";
-                stopwatch.Reset();
-                stopwatch.Start();
-                Color color;
-                for (int i = bmp.Width - 1; i >= 0; i--)
-                {
-                    for (int j = 0; j < bmp.Height; j++)
-                    {
-                        color = bmp.GetPixel(i, j);
-
-                        // int ttt = (color.R + color.B + color.G) / 3;
-
-                        // int aaa = 150;
-
-                        //if (color.R<aaa && color.B<aaa && color.G < aaa)
-                        /* if(ttt<150)
-                         {
-                             bit = bit + "0";
-                         }else
-                         {
-                             bit = bit + "1";
-                         }*/
-
-                        if (color.ToArgb() == Color.Black.ToArgb())
-                        {
-                            bit = bit + "0";
-                        }
-                        else
-                        {
-                            bit = bit + "1";
-                        }
-
-
-                        if (color.ToArgb() == Color.Red.ToArgb())
-                        {
-                            rbit += "1";
-                        }
-                        else
-                        {
-                            rbit += "0";
-                        }
-
-
-
-                        if (bit.Length == 8)
-                        {
-                            //tatolbit = tatolbit + bit;
-                            totaldata = totaldata + Convert.ToInt32(bit, 2).ToString("X2");
-                            totalreddata = totalreddata + Convert.ToInt32(rbit, 2).ToString("X2");
-                            bit = "";
-                            rbit = "";
-                        }
-                    }
-                }
-                t = totaldata;
-                r = totalreddata;
-
-                for (int i = t.Length; i < 5536; i++)//2768
-                {
-                    t = t + "0";
-                    r = r + "0";
-                }
-                count = 0;
-                total_count = 0;
-                Write_Check = true;
-
-                t = blackEnCode(t);
-                r = redEnCode(r);
-                string com = "090126" + "f80822c001";
-                byte[] bcom = iCheckSum(StringToByteArray(com));
-                SendData(bcom);
-            }
-        }
+       
 
         private void Connect_COM_Button_Click(object sender, EventArgs e)
         {
-            if (port.IsOpen)
-            {
-                port.Close();
-                ConnectStatus.Text = "Connect Fail !";
-                ConnectStatus.ForeColor = Color.Green;
-                isConnect = false;
-            }
-
-            if (!port.IsOpen)
-            {
-                try
-                {
-                    int com = Convert.ToInt32(cbCOMPort.Text);
-                    port.PortName = cbbComPort.Text;
-                    this.port.BaudRate = com;            // baud rate = 9600
-                    this.port.Parity = Parity.None;       // Parity = none
-                    this.port.StopBits = StopBits.One;    // stop bits = one
-                    this.port.DataBits = 8;               // data bits = 8
-                    this.port.WriteTimeout = 1;
-                    this.port.ReadTimeout = 1;
-                    // 設定 PORT 接收事件
-                    port.DataReceived += new SerialDataReceivedEventHandler(port1_DataReceived);
-
-                    // 打開 PORT
-                    port.Open();
-                }
-                catch (Exception ex)
-                {
-                    port.Close();
-                    MessageBox.Show("串口出問題請重新啟動程式");
-                }
-            }
-            if (port.IsOpen == true)
+            NfcEslLib.portOpen(cbbComPort.Text,cbCOMPort.Text);
+            if (NfcEslLib.portIsOpen())
             {
                 ConnectStatus.Text = "Connect OK !";
                 ConnectStatus.ForeColor = Color.Green;
@@ -746,6 +666,12 @@ namespace EPaperDemo2
                 ConnectStatus.ForeColor = Color.Green;
                 isConnect = false;
             }
+        }
+
+        private void SMCEslReceiveEvent(object sender, EventArgs e)
+        {
+            ReceiveDataInvoker stc = new ReceiveDataInvoker(ReceiveData);
+            this.BeginInvoke(stc, e);
         }
 
         private void UpCOM_Click(object sender, EventArgs e)
@@ -786,6 +712,236 @@ namespace EPaperDemo2
         }
 
 
+        //-----------------------------   接收回傳資料 UI處理 ---------------------------
+        private void ReceiveData(EventArgs e)
+        {
+            int msgId = (e as NfcEslLib.SMCEslReceiveEventArgs).msgId;
+            bool status = (e as NfcEslLib.SMCEslReceiveEventArgs).status;
+            byte[] data = (e as NfcEslLib.SMCEslReceiveEventArgs).data;
+
+            if (msgId == NfcEslLib.msg_ReadEslName)
+            {
+                if (status)
+                {
+                    NFCID = ByteArrayToString(data);
+                    /*    List<MessageClass> MList = new List<MessageClass>();
+                        MessageClass Write = new MessageClass("UID", ByteArrayToString(RX));
+                        MList.Add(Write);
+                        TibcoSend(MList);*/
+
+                    texMessageBox.Text = "收: " + ByteArrayToString(data) + "\r\n";
+
+                    if (continueWirte29)
+                    {
+                        //  WriteTimer.Start();
+                        UIDReaderTimer.Stop();
+
+                        Write_Check = false;
+
+
+                        Bitmap bmp = setESLimageDemo_29(panel29, tag1_1.tag);
+                        if (bmp != null)
+                        {
+                            pictureBox_29.Image = bmp;
+                            stopwatch.Reset();
+                            stopwatch.Start();
+                            tatolbit = "";
+
+                            NfcEslLib.eslImagePix(bmp);
+
+                            Write_Check = true;
+                            NfcEslLib.EslSeting();
+                        }
+                    }
+                }
+                else
+                {
+
+                    texMessageBox.Text = "收: " + ByteArrayToString(data) + "\r\n";
+
+                    if (continueWirte29)
+                    {
+                        errorCount++;
+                        if (errorCount == 5)
+                        {
+                            ESLCCloseTwoSTimer.Stop();
+                            UIDReaderTimer.Stop();
+                            continueWirte29 = false;
+                            errorCount = 0;
+                            ErrorTime.Text = DateTime.Now.ToString();
+                        }
+                    }
+
+                }
+
+            }
+            else if (msgId == NfcEslLib.msg_SetEslDefault)
+            {
+                if (status)
+                {
+
+                    try
+                    {
+                        //  Console.WriteLine("ddddddddddddddddddddd");
+                        texMessageBox.Text = "設定成功" + "\r\n";
+                        /*      Thread.Sleep(2000);
+                              string dad = t.Substring(0, substringcount);
+                              count++;*/
+                    }
+                    catch (Exception ex)
+                    {
+
+                        Console.WriteLine("dddddddaaa-" + ex);
+                    }
+
+
+                }
+                else
+                {
+                    if (continueWirte29)
+                    {
+                        errorCount++;
+                        UIDReaderTimer.Start();
+                        ESLCCloseTwoSTimer.Start();
+                    }
+
+
+                    texMessageBox.Text = "設定失敗" + "\r\n";
+                }
+            }
+            else if (msgId == NfcEslLib.msg_WriteEslPackageIndex)
+            {
+
+                if (status)
+                {
+                    texMessageBox.Text = "圖片傳送:" + (e as NfcEslLib.SMCEslReceiveEventArgs).Index;
+                }
+            }
+            else if (msgId == NfcEslLib.msg_WriteEslData)
+            {
+
+                if (status)
+                {
+                }
+                else
+                {
+
+                    if (continueWirte29)
+                    {
+                        errorCount++;
+                        UIDReaderTimer.Start();
+                        ESLCCloseTwoSTimer.Start();
+                    }
+                       
+
+                    texMessageBox.Text = "收: " + ByteArrayToString(data) + "\r\n";
+                    texMessageBox.Text = texMessageBox.Text + "資料錯誤" + "\r\n";
+                }
+
+            }
+
+            else if (msgId == NfcEslLib.msg_WriteEslDataFinish)
+            {
+                stopwatch.Stop();
+
+                updateCount++;
+
+                TimeUpdate(stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
+                errorCount = 0;
+               texMessageBox.Text = texMessageBox.Text + "傳送結束開始更新電子紙" + "\r\n";
+               texMessageBox.Text = texMessageBox.Text + "傳送秒數:" + min + "m" + sec + "s " + secm + "ms" + "\r\n";
+                stopwatch.Reset();
+                if (fStation || sStation || tStation)
+                {
+                    Console.WriteLine("FSTATION END");
+                    List<MessageClass> MList = new List<MessageClass>();
+                    foreach (MessageClass MClass in backMessage)
+                    {
+                        if (MClass.fieldName == "NFCID")
+                        {
+                            MessageClass NFCID = new MessageClass(MClass.fieldName, MClass.value);
+                            MList.Add(NFCID);
+                        }
+                        else if (MClass.fieldName == "LOTID")
+                        {
+                            MessageClass LOTID = new MessageClass(MClass.fieldName, MClass.value);
+                            MList.Add(LOTID);
+                        }
+                    }
+
+                    MessageClass ConveyImg = new MessageClass("ConveyImg", "Y");
+                    MList.Add(ConveyImg);
+                    TibcoSend(MList);
+
+                    // fStation = false;
+                }
+
+
+                if (sStation)
+                {
+                    Console.WriteLine("FSTATION END");
+                    List<MessageClass> MList = new List<MessageClass>();
+                    foreach (MessageClass MClass in backMessage)
+                    {
+                        if (MClass.fieldName == "NFCID")
+                        {
+                            MessageClass NFCID = new MessageClass(MClass.fieldName, MClass.value);
+                            MList.Add(NFCID);
+                        }
+                        else if (MClass.fieldName == "LOTID")
+                        {
+                            MessageClass LOTID = new MessageClass(MClass.fieldName, MClass.value);
+                            MList.Add(LOTID);
+                        }
+                    }
+
+                    MessageClass ConveyImg = new MessageClass("ConveyImg", "Y");
+                    MList.Add(ConveyImg);
+                    TibcoSend(MList);
+
+                    sStation = false;
+                }
+
+
+                if (tStation)
+                {
+                    Console.WriteLine("FSTATION END");
+                    List<MessageClass> MList = new List<MessageClass>();
+                    foreach (MessageClass MClass in backMessage)
+                    {
+                        if (MClass.fieldName == "NFCID")
+                        {
+                            MessageClass NFCID = new MessageClass(MClass.fieldName, MClass.value);
+                            MList.Add(NFCID);
+                        }
+                    }
+
+                    MessageClass ConveyImg = new MessageClass("ConveyImg", "Y");
+                    MList.Add(ConveyImg);
+                    TibcoSend(MList);
+
+                    tStation = false;
+                }
+
+                if (continueWirte29)
+                {
+                    UpdateTimer.Start();
+                    ESLCCloseTwoSTimer.Start();
+                }
+                   
+                Write_Check = false;
+            }
+
+            else if (msgId == NfcEslLib.msg_WriteEslClose)
+            {
+                Write_Check = false;
+                texMessageBox.Text = "關閉ESL。";
+            }
+
+
+        }
+
+
 
         private void TimeUpdate(int secT,int secmT)
         {
@@ -812,348 +968,14 @@ namespace EPaperDemo2
             SendData(bcom);
             Write_Check = false;*/
         }
-        private void SendData(byte[] data)
-        {
-            if (Write_Check|| continueWirte29)
-            {
 
-            }
-            else
-            {
-                texMessageBox.Text = "發送:\r\n" + ByteArrayToString(data) + "\r\n";
-            }
-            if (isConnect)
-            {
-                port.Write(data, 0, data.Count());
-            }
-                
-        }
-
-
-        //接收UART資料
-        private void port1_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-           // stopwatchtext.Stop();
-       //     Console.WriteLine("start" + stopwatchtext.Elapsed.Milliseconds + "ms");
-            while (port.BytesToRead != 0)
-            {
-
-
-                packet.Add((byte)port.ReadByte());
-            }
-            byte[] bArrary = packet.ToArray();
-            if (bArrary.Length > 1)
-            {
-                Display d = new Display(DisplayTextString);
-                try
-                {
-                    this.Invoke(d, new Object[] { bArrary });
-                }
-                catch (Exception ex) { }
-
-            }
-        }
-        int count = 0;
-        int total_count = 0;
-        int substringcount = 32;
-        static byte tag0 = 0x00;
-        static byte tag1 = 0x00;
-        //取得資料並顯示
-        private void DisplayTextString(byte[] RX)
-        {
-            packet.Clear();
-            if (Write_Check)
-            {
-                //05012700d2
-                //05012600d3
-
-                if (RX[0] == (byte)0x05 && RX[2] == (byte)0x26 && RX[3] == (byte)0x00)
-                {
-                    texMessageBox.Text = "設定成功" + "\r\n";
-                    Thread.Sleep(2000);
-                    string com = "150127" + "00" + t.Substring(0, substringcount);
-                    byte[] bcom = iCheckSum(StringToByteArray(com));
-                    SendData(bcom);
-                        Thread.Sleep(37);
-                    count++;
-               /*     for (int i = 0; i < 592; i++)
-                    {
-                        dddd();
-                    }
-                    */
-                }
-                else if (RX[0] == (byte)0x05 && RX[2] == (byte)0x26)
-                {
-                    if(continueWirte29)
-                    UIDReaderTimer.Start();
-                    //error
-                    texMessageBox.Text =  "收: " + ByteArrayToString(RX) + "\r\n";
-                    texMessageBox.Text = texMessageBox.Text + "資料錯誤" + "\r\n";
-                }
-                if (RX[0] == (byte)0x05 && RX[2] == (byte)0x27 && RX[3] == (byte)0x00)
-                {
-           
-                   if (count < (t.Length/32) )
-                    {
-                     //   texMessageBox.Text = "黑 寫入成功:" + count + "\r\n";
-                        string com = "150127" + "00" + t.Substring(count * substringcount, substringcount);
-                        byte[] bcom = iCheckSum(StringToByteArray(com));
-                        SendData(bcom);
-                        count ++;
-                    }
-                    else if (count == (t.Length / 32) )
-                    {
-                        total_count = 0;
-                        count ++;
-                        if(Red == false)
-                        {
-                            string com = "150127" + "ff" + "ffffffffffffffffffffffffffffffff";
-                            byte[] bcom = iCheckSum(StringToByteArray(com));
-                            SendData(bcom);
-                           // texMessageBox.Text = texMessageBox.Text + "傳送結束開始更新電子紙" + "\r\n";
-                        }
-                    }
-                    if (count > (t.Length / 32) && total_count == 0 && Red == true)
-                    {
-                      //  texMessageBox.Text = "紅 寫入成功:" + total_count  + "\r\n";
-                        string com = "150127" + "40" + r.Substring(total_count * substringcount , substringcount);
-                        byte[] bcom = iCheckSum(StringToByteArray(com));
-                        SendData(bcom);
-                        count ++;
-                        total_count ++;
-                    }
-                    else if (count > (t.Length / 32) && total_count < ((r.Length / 32) - 1) && Red == true)
-                    {
-
-                       
-                     ///   texMessageBox.Text = "紅 寫入成功:" + total_count  + "\r\n";
-                        string com = "150127" + "80" + r.Substring(total_count * substringcount , substringcount);
-                        byte[] bcom = iCheckSum(StringToByteArray(com));
-                  //      stopwatchtext.Reset();
-                    //    stopwatchtext.Start();
-                        SendData(bcom);
-                        count++;
-                        total_count++;
-                    }
-                    else if (count > (t.Length / 32) && total_count == ((r.Length / 32) - 1) && Red == true)
-                    {
-                      //  texMessageBox.Text = "紅 寫入成功:" + total_count  + "\r\n";
-                        string com = "150127" + "ff" + r.Substring(total_count * substringcount , substringcount);
-                        byte[] bcom = iCheckSum(StringToByteArray(com));
-                        SendData(bcom);
-                        count++;
-                        total_count++;
-                    }
-                    else if (count > (t.Length / 32) && total_count == (r.Length / 32) && Red == true)
-                    {
-
-                      //  texMessageBox.Text = "紅 寫入成功 :" + total_count  + "\r\n";
-
-                     //   texMessageBox.Text = texMessageBox.Text + "傳送秒數:" + stopwatchtext.Elapsed.Milliseconds + "ms" + "\r\n";
-                        string com = "150127" + "ff" + "ffffffffffffffffffffffffffffffff";
-                        byte[] bcom = iCheckSum(StringToByteArray(com));
-                        SendData(bcom);
-                        count++;
-                        total_count++;
-
-
-                       
-                    }
-                    else if (count > (t.Length / 32) && total_count > (r.Length / 32) && Red == true)
-                    {
-
-                        stopwatch.Stop();
-
-                        updateCount++;
-                        TimeUpdate(stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
-                        //   texMessageBox.Text = texMessageBox.Text + "傳送結束開始更新電子紙" + "\r\n";
-                        texMessageBox.Text = texMessageBox.Text + "傳送秒數:" + min + "m" + sec + "s " + secm + "ms" + "\r\n";
-                        if(continueWirte29)
-                            UpdateTimer.Start();
-
-                        count = 0;
-                        total_count = 0;
-                        Write_Check = false;
-                    }
-                    
-                }
-                else if (RX[0] == (byte)0x05 && RX[2] == (byte)0x27)
-                {
-                    //error
-
-                    if(continueWirte29)
-                    UIDReaderTimer.Start() ;
-
-                    texMessageBox.Text =  "收: " + ByteArrayToString(RX) + "\r\n";
-                    texMessageBox.Text = texMessageBox.Text + "資料錯誤" + "\r\n";
-                }
-
-            }
-            else
-            {
-
-                if (RX[2] == (byte)0x16 && RX[3] == (byte)0x01)
-                {
-                    tag0 = RX[4];
-                    tag1 = RX[5];
-                    texMessageBox.Text = texMessageBox.Text + "收: " + ByteArrayToString(RX) + "\r\n";
-
-                    if (continueWirte29)
-                    {
-                      //  WriteTimer.Start();
-                        UIDReaderTimer.Stop();
-                        Red = true;
-                        count = 0;
-                        total_count = 0;
-                        Write_Check = false;
-
-
-                        Bitmap bmp = setESLimageDemo_29(panel29, tag1_1.tag);
-                        if (bmp != null)
-                        {
-                            pictureBox_29.Image = bmp;
-                            string bit = "";
-                            string rbit = "";
-                            string totaldata = "";
-                            string totalreddata = "";
-                            tatolbit = "";
-                            stopwatch.Reset();
-                            stopwatch.Start();
-                            Color color;
-                            for (int i = bmp.Width - 1; i >= 0; i--)
-                            {
-                                for (int j = 0; j < bmp.Height; j++)
-                                {
-                                    color = bmp.GetPixel(i, j);
-                                    if (color.ToArgb() == Color.Black.ToArgb())
-                                    {
-                                        bit = bit + "0";
-                                    }
-                                    else
-                                    {
-                                        bit = bit + "1";
-                                    }
-
-                                    if (color.ToArgb() == Color.Red.ToArgb())
-                                    {
-                                        rbit += "1";
-                                    }
-                                    else
-                                    {
-                                        rbit += "0";
-                                    }
-
-                                    if (bit.Length == 8)
-                                    {
-                                        totaldata = totaldata + Convert.ToInt32(bit, 2).ToString("X2");
-                                        totalreddata = totalreddata + Convert.ToInt32(rbit, 2).ToString("X2");
-                                        bit = "";
-                                        rbit = "";
-                                    }
-                                }
-                            }
-                            t = totaldata;
-                            r = totalreddata;
-
-                            for (int i = t.Length; i < 5792; i++)//2896
-                            {
-                                t = t + "0";
-                                r = r + "0";
-                            }
-                            count = 0;
-                            total_count = 0;
-                            t = blackEnCode(t);
-                            r = redEnCode(r);
-
-                            Write_Check = true;
-                            string com = "090126" + "f80829c001";
-                            byte[] bcom = iCheckSum(StringToByteArray(com));
-
-                            SendData(bcom);
-                        }
-                    }
-                }
-               
-            }
-
-
-        }
-
+ 
         public class txtData {
             public string tag;
             public Color tagColor = Color.Black;
         }
 
-        public static byte[] iCheckSum(byte[] data)
-        {
-            byte[] bytes = new byte[data.Length + 1];
-            int intValue = 0;
-            for (int i = 0; i < data.Length; i++)
-            {
-                intValue = intValue + (int)data[i];
-                bytes[i] = data[i];
-            }
-            byte[] intBytes = BitConverter.GetBytes(intValue);
-            Array.Reverse(intBytes);
-            bytes[data.Length] = (byte)(intBytes[intBytes.Length - 1] ^ (byte)0xff);
-            //  Console.WriteLine(ByteArrayToString(bytes) + "");
-            return bytes;
-        }
-
-
-        public static string blackEnCode(string data)
-        {
-            byte[] bytes = StringToByteArray(data);
-            byte[] bytesend = new byte[0];
-            byte xx = new byte();
-            string aaa = "";
-            int count16 = 0;
-
-            int tol =  (tag0 + tag1) % 256;
-
-            if (tol == 0)
-                xx = 0x55;
-            else
-                xx = Convert.ToByte(tol);
-
-           /* for (int i = 0; i < bytes.Length; i++)
-            {
-                if (i!=0&&i % 2 == 1)
-                {
-                    int tol = (bytes[i - 1] + bytes[i])%256;
-                    if (tol ==0)
-                    {
-                        tag0
-                        //Console.WriteLine("bytesend" + 0x55);
-                        bytesend = addByteToArray(bytesend, 0x55);
-                    }
-                    else
-                    {
-                        //Console.WriteLine("bytesend" + Convert.ToByte(tol));
-                        Convert.ToByte(tol);
-                        bytesend = addByteToArray(bytesend, Convert.ToByte(tol));
-                    }
-
-                }
-            }*/
-            for (int i = 0; i < bytes.Length; i++)
-            {
-
-                // byteEncode[i] = (byte)(((bytesend[i]+0x02)%256) ^ (byte)0xff);
-                //  int a1 = (bytesend[i] + 0x02) % 256;
-                //   int a2 = (byte)a1 ^ (byte)0xff;
-                //   string a3 = a2.ToString("X2");
-                // Console.WriteLine(a3);
-                if (count16==16)
-                {
-                    count16 = 0;
-                }
-                aaa = aaa + ((byte)(((bytes[i])) ^( xx+ blackRandomN[count16]))).ToString("X2");
-                count16++;
-            }
-                
-            return aaa;
-        }
+   
 
 
         public static byte[] addByteToArray(byte[] bArray, byte newByte)
@@ -1163,58 +985,7 @@ namespace EPaperDemo2
             newArray[bArray.Length] = newByte;
             return newArray;
         }
-        public static string redEnCode(string data)
-        {
-            byte[] bytes = StringToByteArray(data);
-            byte[] bytesend = new byte[0];
-            string aaa = "";
-            int count16 = 0;
-            byte xx = new byte();
-            int tol = (tag0 + tag1) % 256;
-
-            if (tol == 0)
-                xx = 0x55;
-            else
-                xx = Convert.ToByte(tol);
-
-            /*     for (int i = 0; i < bytes.Length; i++)
-                 {
-                     if (i != 0 && i % 2 == 1)
-                     {
-                         int tol = (bytes[i - 1] + bytes[i]) % 256;
-                         if (tol == 0)
-                         {
-
-                             //Console.WriteLine("bytesend" + 0x55);
-                             bytesend = addByteToArray(bytesend, 0x55);
-                         }
-                         else
-                         {
-                             //Console.WriteLine("bytesend" + Convert.ToByte(tol));
-                             Convert.ToByte(tol);
-                             bytesend = addByteToArray(bytesend, Convert.ToByte(tol));
-                         }
-
-                     }
-                 }*/
-            for (int i = 0; i < bytes.Length; i++)
-            {
-
-                // byteEncode[i] = (byte)(((bytesend[i]+0x02)%256) ^ (byte)0xff);
-                //  int a1 = (bytesend[i] + 0x01) % 256;
-                //   int a2 = (byte)a1 ^ (byte)0xff;
-                //   string a3 = a2.ToString("X2");
-                // Console.WriteLine(a3);
-                if (count16 == 16)
-                {
-                    count16 = 0;
-                }
-                aaa = aaa + ((byte)(((bytes[i])) ^ (xx + redRandomN[count16]))).ToString("X2");
-                count16++;
-            }
-
-            return aaa;
-        }
+       
 
         public static string ByteArrayToString(byte[] ba)
         {
@@ -1226,15 +997,6 @@ namespace EPaperDemo2
 
         
 
-        public static byte[] StringToByteArray(String hex)
-        {
-            int NumberChars = hex.Length;
-            byte[] bytes = new byte[NumberChars / 2];
-            for (int i = 0; i < NumberChars; i += 2)
-                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
-            return bytes;
-        }
-
 
         //--------------------------合力泰---------------------------------------------
         private void HINKViewerButton_Click(object sender, EventArgs e)
@@ -1245,9 +1007,7 @@ namespace EPaperDemo2
 
         private void HINKWriteButton_Click(object sender, EventArgs e)
         {
-            Red = true;
-            count = 0;
-            total_count = 0;
+
             Write_Check = false;
 
             if (ReadIDClick)
@@ -1263,59 +1023,17 @@ namespace EPaperDemo2
             if (bmp != null)
             {
                 pictureBox_29.Image = bmp;
-                string bit = "";
-                string rbit = "";
-                string totaldata = "";
-                string totalreddata = "";
                 tatolbit = "";
                 stopwatch.Reset();
                 stopwatch.Start();
                 Color color;
-                for (int i = bmp.Width - 1; i >= 0; i--)
-                {
-                    for (int j = 0; j < bmp.Height; j++)
-                    {
-                        color = bmp.GetPixel(i, j);
-                        if (color.ToArgb() == Color.Black.ToArgb()){
-                            bit = bit + "0";
-                        }else {
-                            bit = bit + "1";
-                        }
 
-                        if (color.ToArgb() == Color.Red.ToArgb()) {
-                            rbit += "1";
-                        } else{
-                            rbit += "0";
-                        }
+                NfcEslLib.eslImagePix(bmp);
 
-                        if (bit.Length == 8)
-                        {
-                            totaldata = totaldata + Convert.ToInt32(bit, 2).ToString("X2");
-                            totalreddata = totalreddata + Convert.ToInt32(rbit, 2).ToString("X2");
-                            bit = "";
-                            rbit = "";
-                        }
-                    }
-                }
-                t = totaldata;
-                r = totalreddata;
 
-                for (int i = t.Length; i < 5792; i++)//2896
-                {
-                    t = t + "0";
-                    r = r + "0";
-                }
-                count = 0;
-                total_count = 0;
-                t = blackEnCode(t);
-                r = redEnCode(r);
-                
                 Write_Check = true;
-                string com = "090126" + "f80829c001";
-                byte[] bcom = iCheckSum(StringToByteArray(com));
-
-                SendData(bcom);
-            }
+                NfcEslLib.EslSeting();
+              }
         }
 
         private void setImageDataHINK()
@@ -1499,10 +1217,9 @@ namespace EPaperDemo2
             texMessageBox.Text = texMessageBox.Text + "傳送秒數:" + min + "m" + sec + "s " + secm + "ms" + "  Count:"  + updateCount + "\r\n";
             label2.Text = min + "m" + sec + "s " + secm + "ms";
             label4.Text = updateCount.ToString();
+            ESLCCloseTwoSTimer.Stop();
             UpdateTimer.Stop();
-            string com = "040116";
-            byte[] bcom = iCheckSum(StringToByteArray(com));
-            SendData(bcom);
+            NfcEslLib.eslUUIDRead();
             Write_Check = false;
             WriteStopwatch.Reset();
             UIDReaderTimer.Start();
@@ -1512,9 +1229,7 @@ namespace EPaperDemo2
         private void UUIDTimer(object sender, EventArgs e)
         {
 
-            string com = "040116";
-            byte[] bcom = iCheckSum(StringToByteArray(com));
-            SendData(bcom);
+            NfcEslLib.eslUUIDRead();
             Write_Check = false;
 
         }
@@ -1545,9 +1260,7 @@ namespace EPaperDemo2
             }
             label2.Visible = true;
             label4.Visible = true;
-            string com = "040116";
-            byte[] bcom = iCheckSum(StringToByteArray(com));
-            SendData(bcom);
+            NfcEslLib.eslUUIDRead();
             Write_Check = false;
             WriteStopwatch.Start();
             UIDReaderTimer.Start();
@@ -1570,23 +1283,46 @@ namespace EPaperDemo2
 
         private void txtImport_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-            //openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 2;
-            openFileDialog1.RestoreDirectory = true;
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            try
             {
-                // InsertDataList.Clear();
-                //List<text_data_list> dataList = new List<text_data_list>();
-                string txtPath = openFileDialog1.FileName;
-                string file = Path.GetExtension(openFileDialog1.FileName);
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+                //openFileDialog1.InitialDirectory = "c:\\";
+                openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog1.FilterIndex = 2;
+                openFileDialog1.RestoreDirectory = true;
+
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    Console.WriteLine(openFileDialog1.FileName);
+                    ESLStyleUpdate(openFileDialog1.FileName);
+
+                }
+
+                Bitmap aa = setESLimageDemo_29(panel29, tag1_1.tag);
+                pictureBox_29.Image = aa;
+            }
+            catch (Exception ex) {
+                MessageBox.Show("error Code:"+ex);
+            }
+          
+        }
+
+
+        private void ESLStyleUpdate( string fileName)
+        {
+            // InsertDataList.Clear();
+            //List<text_data_list> dataList = new List<text_data_list>();
+            StreamReader sr = null;
+            try
+            {
+                string txtPath = fileName;
+                string file = Path.GetExtension(fileName);
                 if (file == ".txt")
                 {
-                    using (StreamReader sr = File.OpenText(openFileDialog1.FileName))
-                    {
+                    sr = File.OpenText(fileName);
+                  //  using (StreamReader sr = File.OpenText(fileName))
+                  //  {
                         //listBox_Battery.Items.Clear();
                         String input;
                         int j = 0;
@@ -1629,8 +1365,7 @@ namespace EPaperDemo2
                             }
                             else
                             {
-                                /*  if (j == 7)
-                                      j++;*/
+
                                 if (input.Length > 0)
                                 {
                                     if (input.IndexOf('@') > -1)
@@ -1638,7 +1373,7 @@ namespace EPaperDemo2
                                         color = Color.Red;
                                         input = input.Trim('@');
                                     }
-                                        
+
 
                                     switch (j)
                                     {
@@ -1769,17 +1504,20 @@ namespace EPaperDemo2
                             }
 
 
-                        }
+                        //}
                         uodateTxt();
-                        sr.Close();
+                       
                     }
                 }
             }
-
-            Bitmap aa = setESLimageDemo_29(panel29, tag1_1.tag);
-            pictureBox_29.Image = aa;
+            catch (Exception ex)
+            {
+            }
+            finally {
+                sr.Close();
+            }
+           
         }
-
 
         public void uodateTxt()
         {
@@ -1824,89 +1562,621 @@ namespace EPaperDemo2
         }
 
 
+        private string  SendDaemonRead()
+        {
+            try
+            {   // Open the text file using a stream reader.
+                using (StreamReader sr = new StreamReader(@"c:\cim\ini\ws.ini"))
+                {
+                    // Read the stream to a string, and write the string to the console.
+                    String line = sr.ReadToEnd();
+
+                    return line;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The file could not be read:");
+                MessageBox.Show(e.Message);
+
+                return null;
+            }
+        }
+
+        private void SC_Transport_Click(object sender, EventArgs e)
+        {
+         /*   try
+            {
+                TIBCO.Rendezvous.Environment.Open();
+                TibcoSendStatus.Text = "TIBCO開啟";
+            }
+            catch (RendezvousException exception)
+            {
+                Console.Error.WriteLine("Failed to open Rendezvous Environment:");
+                Console.Error.WriteLine(exception.StackTrace);
+                TibcoSendStatus.Text = "TIBCO錯誤";
+                System.Environment.Exit(1);
+            }
+
+
+            // Create Network transport
+
+            try
+            {
+                string service = null;
+                string network = null;
+                string daemon = SendDaemon;
+                transport = new NetTransport(service, network, daemon);
+                TibcoSendStatus.Text = "Transport 連接成功";
+            }
+            catch (RendezvousException exception)
+            {
+                Console.Error.WriteLine("Failed to create NetTransport:");
+                Console.Error.WriteLine(exception.StackTrace);
+                TibcoSendStatus.Text = "Transport 連接失敗";
+                System.Environment.Exit(1);
+            }*/
+        }
+
+        private void SD_Transport_Click(object sender, EventArgs e)
+        {
+        /*    try
+            {
+                transport.Destroy();
+                TibcoSendStatus.Text = "Transpot 關閉成功";
+            }
+            catch (Exception ex)
+            {
+
+
+                TibcoSendStatus.Text = ex.Message + "\r\n" + "Transpot 關閉失敗";
+            }*/
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+            try {
+              //  t1.Abort();
+                listenSubject = NFCID;
+                Console.WriteLine("NFCID" + NFCID);
+                t1 = new Thread(new ParameterizedThreadStart(MyBackgroundTaskFStation));
+                if(!t1.IsAlive)
+                    t1.Start();
+
+                fStation = true;
+
+                //  Thread t1 = new Thread(new ParameterizedThreadStart(MyBackgroundTask));
+
+                List<MessageClass> MList = new List<MessageClass>();
+                MessageClass PowerClass = new MessageClass("Power", "Y");
+                MessageClass NFCIDClass = new MessageClass("NFCID", NFCID);
+                MList.Add(PowerClass);
+                MList.Add(NFCIDClass);
+                TibcoSend(MList);
+
+                texMessageBox.Text = "第一站 send : power  NFCID";
+            }
+            catch (Exception ex) {
+
+                Console.WriteLine("button1  "+ex);
+            }
+
+        }
+            
+
+        private void TibcoSend(List<MessageClass> Data)
+        {
+         /*   TIBCO.Rendezvous.Message message = null;
+            try
+            {
+                message = new TIBCO.Rendezvous.Message();
+                foreach (MessageClass messageClass in Data)
+                {
+                    message.AddField(messageClass.fieldName, messageClass.value);
+                }
+                message.SendSubject = "ITAG";
+                if(message!=null)
+                transport.Send(message);
+            }
+            catch (RendezvousException exception)
+            {
+                Console.Error.WriteLine("Failed to create Message:");
+                Console.Error.WriteLine(exception.StackTrace);
+                System.Environment.Exit(1);
+            }*/
+        }
+
+        private    void MyBackgroundTask(object sender)
+        {
+            // Create Listener
+         /*   Listener listener = null;
+
+            try
+            {
+                listener = new Listener(Queue.Default, transportlisten, "ITAG", null);
+                Console.WriteLine("ggggggggggggg");
+                listener.MessageReceived += new MessageReceivedEventHandler(OnMessageReceived);
+               // listenMessage.Text = "listen 成功";
+                // dispatch Rendezvous events
+                while (true)
+                {
+                    try
+                    {
+
+                        Queue.Default.Dispatch();
+                    }
+                    catch (RendezvousException exception)
+                    {
+                        Console.Error.WriteLine("Exception dispatching default queue:");
+                        Console.Error.WriteLine(exception.StackTrace);
+                        break;
+                    }
+                }
+
+                // Force optimizer to keep alive listeners up to this point.
+                GC.KeepAlive(listener);
+
+                TIBCO.Rendezvous.Environment.Close();
+            }
+            catch (RendezvousException exception)
+            {
+                Console.Error.WriteLine("Failed to create Listener:");
+                Console.Error.WriteLine(exception.StackTrace);
+                listenMessage.Text = "listen 失敗";
+                System.Environment.Exit(1);
+            }*/
+        }
+
+
+        private  void MyBackgroundTaskFStation(object sender)
+        {
+            // Create Listener
+            /*
+            try
+            {
+                Console.WriteLine("FUFUUUFFU");
+
+                if (listener != null)
+                    listener.Destroy();
+
+
+                Console.WriteLine("LISTEN");
+                listener = new Listener(Queue.Default, transport, listenSubject, null);
+                listener.MessageReceived += new MessageReceivedEventHandler(OnMessageReceived);
+              //  listenMessage.Text = "listen 成功";
+                // dispatch Rendezvous events
+                while (true)
+                {
+                    try
+                    {
+
+                        Queue.Default.Dispatch();
+                    }
+                    catch (RendezvousException exception)
+                    {
+                        Console.Error.WriteLine("Exception dispatching default queue:");
+                        Console.Error.WriteLine(exception.StackTrace);
+                        break;
+                    }
+                }
+
+                // Force optimizer to keep alive listeners up to this point.
+                GC.KeepAlive(listener);
+
+                TIBCO.Rendezvous.Environment.Close();
+            }
+            catch (RendezvousException exception)
+            {
+                Console.Error.WriteLine("Failed to create Listener:");
+                Console.Error.WriteLine(exception.StackTrace);
+                listenMessage.Text = "listen 失敗";
+                System.Environment.Exit(1);
+            }
+            */
+        }
+
+
+        /*public   void OnMessageReceived(object listener, MessageReceivedEventArgs messageReceivedEventArgs)
+        {
+
+            try {
+
+                backMessage.Clear();
+                TIBCO.Rendezvous.Message message = messageReceivedEventArgs.Message;
+                //  Form1 s = new Form1();
+                //    s.textbox1change(message.ToString());
+                //     s.textBox5.Text = s.textBox5.Text + message.ToString() + "\r\n";
+                test.Text = message.ToString();
+
+
+                Console.WriteLine("--------------dddds" + message.ToString());
+
+                Console.WriteLine("--------------");
+                Console.Out.WriteLine("{0}: subject={1}, reply={2}, message={3}",
+                 DateTime.Now.ToString(),
+                 message.SendSubject,
+                 message.ReplySubject,
+                 message.ToString());
+                Console.Out.Flush();
+                if(texMessageBox.InvokeRequired)
+                {
+                    Invoke((MethodInvoker)(() =>
+                    {
+                        texMessageBox.Text = "listen  : " + " subject = " + message.SendSubject + " ReplySubject = " + message.ReplySubject + " message = " + message.ToString();
+                    }));
+                        
+                }
+
+                for (int i = 0; i < test.Text.Split(' ').Length; i++)
+                {
+                    string str = test.Text.Split(' ')[i].Replace("{", "");
+                    str = str.Replace("}", "");
+                    string field = str.Split('=')[0];
+                    string value = str.Split('=')[1].Replace(@"""", "");
+
+                    MessageClass backClass = new MessageClass(field, value);
+                    backMessage.Add(backClass);
+                    Console.WriteLine("FFFFFFFFFFFFFFFFFFF");
+                }
+
+                if (fStation || sStation || tStation)
+                {
+                    string Ivalue = null;
+                    string Lvalue = null;
+                    foreach (MessageClass data in backMessage.ToArray())
+                    {
+
+                        if (data.fieldName == "NFCID")
+                            Ivalue = data.value;
+
+                        if (data.fieldName == "LOTID")
+                            Lvalue = data.value;
+                        if (data.fieldName == "STAGE")
+                        {
+                            if(data.value== "SHIP")
+                            backMessage.Remove(data);
+                        }
+
+                    }
+
+                    Console.WriteLine("FFFFFFFFFFFFFFFFFFF" + Lvalue.Substring(0, 7));
+                    scanDirFileName.Text = Lvalue.Substring(0, 7);
+                    //scanDir(fileName);
+                }
+            }
+            catch (Exception ex) {
+
+                Console.WriteLine("ONMESSAGE "+ex);
+            }
+            
+
+        }
+        */
+        private void listenMessage_TextChanged(object sender, EventArgs e)
+        {
+            TextBox dat = (TextBox)sender;
+            UpdateUI(dat.Text, texMessageBox);
+        }
+
+        private void scanDirFileName_TextChanged(object sender, EventArgs e)
+        {
+            TextBox dat = (TextBox)sender;
+            /* UpdateUI(dat.Text, scanDirTextBox);
+             */
+            if (dat.Text != null) {
+                scanDir(dat.Text);
+
+            }
+
+        }
+
+       
+        private void test_TextChanged(object sender, EventArgs e)
+        {
+            TextBox dat = (TextBox)sender;
+            UpdateUI(dat.Text, texMessageBox);
+        }
+
+        
+        private void UpdateUI(string value, Control ctl)
+        {
+            if (this.InvokeRequired)
+            {
+                UpdateUICallBack uu = new UpdateUICallBack(UpdateUI);
+                this.Invoke(uu, value, ctl);
+            }
+            else
+            {
+                ctl.Text = value;
+            }
+        }
+
+        private void LD_Listen_Click(object sender, EventArgs e)
+        {
+         /*   try
+            {
+                transportlisten.Destroy();
+                Queue.Default.Destroy();
+               
+            }
+            catch (Exception ex)
+            {
+               
+            }*/
+
+        }
+
+        private void LC_Transport_Click(object sender, EventArgs e)
+        {/*
+            try
+            {
+                TIBCO.Rendezvous.Environment.Open();
+             
+            }
+            catch (RendezvousException exception)
+            {
+                Console.Error.WriteLine("Failed to open Rendezvous Environment:");
+                Console.Error.WriteLine(exception.StackTrace);
+             
+                System.Environment.Exit(1);
+            }
+
+
+            // Create Network transport
+
+            try
+            {
+                string service = null;
+                string network = null;
+                string daemon = SendDaemon;
+                transportlisten = new NetTransport(service, network, daemon);
+               
+            }
+            catch (RendezvousException exception)
+            {
+                Console.Error.WriteLine("Failed to create NetTransport:");
+                Console.Error.WriteLine(exception.StackTrace);
+            
+                System.Environment.Exit(1);
+            }*/
+        }
+
+        private void C_Listen_Click(object sender, EventArgs e)
+        {
+            if (!t1.IsAlive)
+                t1.Start();
+        }
+
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            /* t1.Abort();
+             Queue.Default.Destroy();*/
+            System.Environment.Exit(1);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try {
+                string[] files = System.IO.Directory.GetFiles(@"D:\ITAG\", "*.*", System.IO.SearchOption.AllDirectories);
+                if (files.Length != 0)
+                {
+                    foreach (string fileName in files)
+                    {
+                        //Console.WriteLine(fileName);
+                        ESLStyleUpdate(fileName);
+
+
+                        Bitmap aa = setESLimageDemo_29(panel29, tag1_1.tag);
+                        pictureBox_29.Image = aa;
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex);
+            }
+
+        }
+
+         private void scanDir(string dirFileName) {
+
+            try
+            {
+                Bitmap bmp = null;
+                string[] files = System.IO.Directory.GetFiles(@"D:\ITAG\", "*.*", System.IO.SearchOption.AllDirectories);
+                if (files.Length != 0)
+                {
+                    foreach (string fileName in files)
+                    {
+
+                        if (fileName.ToUpper().Contains(dirFileName))
+                        {
+                            Console.WriteLine(fileName);
+                            ESLStyleUpdate(fileName);
+
+
+                            bmp = setESLimageDemo_29(panel29, tag1_1.tag);
+                            pictureBox_29.Image = bmp;
+                            break;
+                        }
+
+                    }
+                }
+
+                Write_Check = false;
+                //   Bitmap bmp = setESLimageDemo_29(panel29, tag1_1.tag);
+
+
+                if (bmp != null)
+                {
+                    //   pictureBox_29.Image = bmp;
+                    tatolbit = "";
+                    stopwatch.Reset();
+                    stopwatch.Start();
+                    NfcEslLib.eslImageLockBit(bmp);
+
+                    NfcEslLib.EslSeting();
+
+                    scanDirFileName.Text = null;
+                }
+                else
+                {
+                    List<MessageClass> MList = new List<MessageClass>();
+                    MessageClass ConveyImgClass = new MessageClass("ConveyImg", "N");
+
+                    MessageClass NFCIDClass = new MessageClass("NFCID", NFCID);
+                    MList.Add(ConveyImgClass);
+                    MList.Add(NFCIDClass);
+                    TibcoSend(MList);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("EEEEEEEEEEEEEEEEEEEEEEEEEEEe"+ex);
+            }
+        }
+
+        private void sStationButton_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+              //  t1.Abort();
+                string Lvalue = null;
+                foreach (MessageClass data in backMessage)
+                {
+                    if (data.fieldName == "LOTID")
+                        Lvalue = data.value;
+                }
+                listenSubject = NFCID + Lvalue;
+                Console.WriteLine("NFCID" + NFCID);
+                t1 = new Thread(new ParameterizedThreadStart(MyBackgroundTaskFStation));
+                if(!t1.IsAlive)
+                    t1.Start();
+
+                sStation = true;
+
+                //  Thread t1 = new Thread(new ParameterizedThreadStart(MyBackgroundTask));
+
+                List<MessageClass> MList = new List<MessageClass>();
+                MessageClass PowerClass = new MessageClass("Power", "Y");
+                MessageClass LOTIDClass = new MessageClass("LOTID", Lvalue);
+                MessageClass NFCIDClass = new MessageClass("NFCID", NFCID);
+                MList.Add(PowerClass);
+                MList.Add(LOTIDClass);
+                MList.Add(NFCIDClass);
+                TibcoSend(MList);
+                texMessageBox.Text = "第二站 send : power  NFCID LOTID";
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("sStationButton  " + ex);
+            }
+
+        }
+
+        private void tStationButton_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+      //          t1.Abort();
+                string Lvalue = null;
+                foreach (MessageClass data in backMessage)
+                {
+                    if (data.fieldName == "LOTID")
+                        Lvalue = data.value;
+                }
+                listenSubject = NFCID + Lvalue;
+              //  Console.WriteLine("NFCID" + NFCID);
+                t1 = new Thread(new ParameterizedThreadStart(MyBackgroundTaskFStation));
+                if(!t1.IsAlive)
+                    t1.Start();
+
+                sStation = true;
+
+                //  Thread t1 = new Thread(new ParameterizedThreadStart(MyBackgroundTask));
+
+                List<MessageClass> MList = new List<MessageClass>();
+                MessageClass PowerClass = new MessageClass("Power", "Y");
+                MessageClass LOTIDClass = new MessageClass("LOTID", Lvalue);
+                MessageClass NFCIDClass = new MessageClass("NFCID", NFCID);
+                MList.Add(PowerClass);
+                MList.Add(LOTIDClass);
+                MList.Add(NFCIDClass);
+                TibcoSend(MList);
+                texMessageBox.Text = "第三站 send : power  NFCID LOTID";
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("tStationButton  " + ex);
+            }
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            NfcEslLib.sendWriteEslClose();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Write_Check = false;
+
+            if (ReadIDClick)
+            {
+                UIDReaderTimer.Stop();
+                ReadUID.Text = "讀取Tag";
+                ReadUID.ForeColor = Color.Black;
+                ReadIDClick = false;
+            }
+
+            Bitmap bmp = setESLimageDemo_29(panel29, tag1_1.tag);
+
+            if (bmp != null)
+            {
+                pictureBox_29.Image = bmp;
+                tatolbit = "";
+                stopwatch.Reset();
+                stopwatch.Start();
+                Color color;
+
+                NfcEslLib.eslImagePix2Color(bmp);
+
+
+                Write_Check = true;
+                NfcEslLib.EslSeting2Color();
+            }
+        }
+
+        private void ESLCCloseTwoSFunTimer(object sender, EventArgs e)
+        {
+
+
+            Console.WriteLine("ESLCCloseTwoSFunTimer");
+
+            if (errorCount == 5)
+            {
+                ESLCCloseTwoSTimer.Stop();
+                UIDReaderTimer.Stop();
+                continueWirte29 = false;
+                errorCount = 0;
+                ErrorTime.Text = DateTime.Now.ToString();
+            }
+            NfcEslLib.sendWriteEslClose();
+
+        }
+
         private void DpiGet(float dpiX, float dpiY)
         {
             // 找出字體大小,並算出比例
              Graphics  graphics = this.CreateGraphics();
              dpiX = graphics.DpiX;
              dpiY = graphics.DpiY;
-        }
-
-        private void dddd()
-        {
-            Console.WriteLine(count);
-            if (count < (t.Length / 32))
-            {
-                texMessageBox.Text = "黑 寫入成功:" + count + "\r\n";
-                string com = "150127" + "00" + t.Substring(count * substringcount, substringcount);
-                byte[] bcom = iCheckSum(StringToByteArray(com));
-                SendData(bcom);
-                count++;
-            }
-            else if (count == (t.Length / 32))
-            {
-                total_count = 0;
-                count++;
-                if (Red == false)
-                {
-                    string com = "150127" + "ff" + "ffffffffffffffffffffffffffffffff";
-                    byte[] bcom = iCheckSum(StringToByteArray(com));
-                    SendData(bcom);
-                    texMessageBox.Text = texMessageBox.Text + "傳送結束開始更新電子紙" + "\r\n";
-                }
-            }
-            if (count > (t.Length / 32) && total_count == 0 && Red == true)
-            {
-                texMessageBox.Text = "紅 寫入成功:" + total_count + "\r\n";
-                string com = "150127" + "40" + r.Substring(total_count * substringcount, substringcount);
-                byte[] bcom = iCheckSum(StringToByteArray(com));
-                SendData(bcom);
-                count++;
-                total_count++;
-            }
-            else if (count > (t.Length / 32) && total_count < ((r.Length / 32) - 1) && Red == true)
-            {
-                stopwatchtext.Stop();
-                Console.WriteLine("start" + stopwatchtext.Elapsed.Milliseconds + "ms");
-                stopwatchtext.Reset();
-                stopwatchtext.Start();
-
-                texMessageBox.Text = "紅 寫入成功:" + total_count + "\r\n";
-                string com = "150127" + "80" + r.Substring(total_count * substringcount, substringcount);
-                byte[] bcom = iCheckSum(StringToByteArray(com));
-                SendData(bcom);
-                count++;
-                total_count++;
-            }
-            else if (count > (t.Length / 32) && total_count == ((r.Length / 32) - 1) && Red == true)
-            {
-                texMessageBox.Text = "紅 寫入成功:" + total_count + "\r\n";
-                string com = "150127" + "ff" + r.Substring(total_count * substringcount, substringcount);
-                byte[] bcom = iCheckSum(StringToByteArray(com));
-                SendData(bcom);
-                count++;
-                total_count++;
-            }
-            else if (count > (t.Length / 32) && total_count == (r.Length / 32) && Red == true)
-            {
-
-                texMessageBox.Text = "紅 寫入成功 :" + total_count + "\r\n";
-                stopwatch.Stop();
-                texMessageBox.Text = texMessageBox.Text + "傳送結束開始更新電子紙" + "\r\n";
-                texMessageBox.Text = texMessageBox.Text + "傳送秒數:" + stopwatch.Elapsed.Seconds + "s " + stopwatch.Elapsed.Milliseconds + "ms" + "\r\n";
-                texMessageBox.Text = texMessageBox.Text + "傳送秒數:" + stopwatchtext.Elapsed.Milliseconds + "ms" + "\r\n";
-                string com = "150127" + "ff" + "ffffffffffffffffffffffffffffffff";
-                byte[] bcom = iCheckSum(StringToByteArray(com));
-                SendData(bcom);
-                count++;
-                total_count++;
-            }
-            else if (count > (t.Length / 32) && total_count > (r.Length / 32) && Red == true)
-            {
-                count = 0;
-                total_count = 0;
-                Write_Check = false;
-            }
         }
 
     }

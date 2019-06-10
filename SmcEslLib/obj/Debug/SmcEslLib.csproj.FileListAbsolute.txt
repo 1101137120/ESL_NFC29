@@ -1,0 +1,15 @@
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\SmcEslLib\bin\Debug\SmcEslLib.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\SmcEslLib\bin\Debug\SmcEslLib.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\SmcEslLib\obj\Debug\SmcEslLib.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\SmcEslLib\obj\Debug\SmcEslLib.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\SmcEslLib\bin\Debug\System.Net.Http.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\SmcEslLib\bin\Debug\System.Net.Http.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\SmcEslLib\obj\Debug\SmcEslLib.csprojAssemblyReference.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\SmcEslLib\obj\Debug\SmcEslLib.csproj.CoreCompileInputs.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\SmcEslLib\obj\Debug\SmcEslLib.csproj.CopyComplete
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\SmcEslLib\bin\Debug\SmcEslLib.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\SmcEslLib\bin\Debug\SmcEslLib.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\SmcEslLib\obj\Debug\SmcEslLib.csproj.CoreCompileInputs.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\SmcEslLib\obj\Debug\SmcEslLib.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\SmcEslLib\obj\Debug\SmcEslLib.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\SmcEslLib\obj\Debug\SmcEslLib.csprojAssemblyReference.cache

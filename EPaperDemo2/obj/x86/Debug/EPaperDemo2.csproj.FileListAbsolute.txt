@@ -20,3 +20,58 @@ C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\bin\x86\Debug\EPaperDemo2.appl
 C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\x86\Debug\EPaperDemo2.TrustInfo.xml
 C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\x86\Debug\EPaperDemo2.exe.manifest
 C:\Users\abby\Desktop\EPaperDemo_5225\EPaperDemo2\obj\x86\Debug\EPaperDemo2.application
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\x86\Debug\EPaperDemo2.exe.config
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\x86\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\x86\Debug\EPaperDemo2.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\x86\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\x86\Debug\EPaperDemo2.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\x86\Debug\System.Net.Http.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\bin\x86\Debug\System.Net.Http.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\x86\Debug\EPaperDemo2.csprojResolveAssemblyReference.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\x86\Debug\EPaperDemo2.Form1.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\x86\Debug\EPaperDemo2.Properties.Resources.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWrite - 複製\EPaperDemo2\obj\x86\Debug\EPaperDemo2.csproj.GenerateResource.Cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\EPaperDemo2.exe.config
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\EPaperDemo2.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\SmcEslLib.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\System.Net.Http.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\TIBCO.Rendezvous.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\zxing.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\zxing.presentation.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\SmcEslLib.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\System.Net.Http.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\TIBCO.Rendezvous.dll.config
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\zxing.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\zxing.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\zxing.presentation.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\zxing.presentation.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\bin\x86\Debug\TIBCO.Rendezvous.netmodule
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\obj\x86\Debug\EPaperDemo2.csprojAssemblyReference.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\obj\x86\Debug\EPaperDemo2.Form1.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\obj\x86\Debug\EPaperDemo2.Properties.Resources.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\obj\x86\Debug\EPaperDemo2.csproj.GenerateResource.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\obj\x86\Debug\EPaperDemo2.csproj.CoreCompileInputs.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\obj\x86\Debug\EPaperDemo2.csproj.CopyComplete
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\obj\x86\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco\EPaperDemo2\obj\x86\Debug\EPaperDemo2.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\EPaperDemo2.exe.config
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\EPaperDemo2.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\SmcEslLib.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\System.Net.Http.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\zxing.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\zxing.presentation.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\System.Net.Http.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\zxing.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\zxing.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\zxing.presentation.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\bin\x86\Debug\zxing.presentation.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\obj\x86\Debug\EPaperDemo2.csprojAssemblyReference.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\obj\x86\Debug\EPaperDemo2.Form1.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\obj\x86\Debug\EPaperDemo2.Properties.Resources.resources
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\obj\x86\Debug\EPaperDemo2.csproj.GenerateResource.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\obj\x86\Debug\EPaperDemo2.csproj.CoreCompileInputs.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\obj\x86\Debug\EPaperDemo2.csproj.CopyComplete
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\obj\x86\Debug\EPaperDemo2.exe
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31\EPaperDemo2\obj\x86\Debug\EPaperDemo2.pdb

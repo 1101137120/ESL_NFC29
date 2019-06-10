@@ -1,0 +1,9 @@
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31_3color_2color\SmcEslLib\bin\Release\SmcEslLib.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31_3color_2color\SmcEslLib\bin\Release\SmcEslLib.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31_3color_2color\SmcEslLib\obj\Release\SmcEslLib.csproj.CoreCompileInputs.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31_3color_2color\SmcEslLib\obj\Release\SmcEslLib.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31_3color_2color\SmcEslLib\obj\Release\SmcEslLib.pdb
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31_3color_2color\SmcEslLib\obj\Release\SmcEslLib.csprojAssemblyReference.cache
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31_3color_2color\SmcEslLib\bin\Release\System.Net.Http.dll
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31_3color_2color\SmcEslLib\bin\Release\System.Net.Http.xml
+C:\Users\abby\Desktop\ESL\EPaperDemo29ContinuteWriteTibco8.31_3color_2color\SmcEslLib\obj\Release\SmcEslLib.csproj.CopyComplete
